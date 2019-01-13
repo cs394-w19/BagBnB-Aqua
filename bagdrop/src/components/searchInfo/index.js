@@ -13,3 +13,4 @@ class SearchInfo extends Component {
         )
     }
 }
+export default SearchInfo;

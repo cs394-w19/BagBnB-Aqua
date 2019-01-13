@@ -1,0 +1,15 @@
+.shelf-item {
+  color: grey;
+  font: verdana;
+  border: 2px Solid Black;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 200px;
+  &-flight{
+
+  }
+
+  &-user{
+    //float:right;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style.scss';
 
 class ShelfItem extends Component {
     render() {
@@ -6,15 +7,21 @@ class ShelfItem extends Component {
         console.log(listing)
         const flightInfo = listing.flightInfo
         return (
-            <div>
-                <span className="flight-info">
-                    <div>{flightInfo.departureLoc}</div>
-                    <div>{flightInfo.arrivalLoc}</div>
-                    <div>{flightInfo.departureTime}</div>
-                    <div>{flightInfo.arrivalTime}</div>
+            <div className="shelf-item">
+
+                <span className="shelf-item-flight">
+                    <div>
+                        <span>{flightInfo.departureLoc}</span>
+                        <span>{flightInfo.arrivalLoc}</span>
+                    </div>
+                    <div>
+                        <span>{flightInfo.departureTime}</span>
+                        <span>{flightInfo.arrivalTime}</span>
+                    </div>
                     <div>{flightInfo.flightNo}</div>
                 </span>
-                <span className="user-info">
+
+                <span className="shelf-item-user">
                     <div>{listing.vendorName}</div>
                     <div>{listing.price}</div>
                     <div>{listing.weight}</div>
