@@ -11,26 +11,32 @@ class ResultsScreen extends Component {
             searchParams: {
                 to: '',
                 from: '',
-                date: '',
+                date: new Date(),
             }
         };
     }
 
-    onFromChange = (from) => {this.setState({searchParams: {
-            from: from
-        }})};
-    onToChange = (from) => {this.setState({searchParams: {
-            from: from
-        }})};
-    onDateChange = (from) => {this.setState({searchParams: {
-            from: from
-        }})};
+    onFromChange = (from) => {
+        const state = this.state;
+        state.searchParams.from = from;
+        this.setState(state);
+    };
+    onToChange = (to) => {
+        const state = this.state;
+        state.searchParams.to = to.toUpperCase();
+        this.setState(state);
+    };
+    onDateChange = (date) => {
+        const state = this.state;
+        state.searchParams.date = date;
+        this.setState(state);
+    };
 
     render() {
         return (
             <div className='results-screen'>
                 <SearchInfo searchParams={this.state.searchParams} onFromChange={this.onFromChange} onToChange={this.onToChange} onDateChange={this.onDateChange}/>
-                <ResultsShelf listings={data.listings} />
+                <ResultsShelf listings={data.listings} searchParams={this.state.searchParams}/>
             </div>
         )
     }

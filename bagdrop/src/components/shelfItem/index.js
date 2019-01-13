@@ -17,20 +17,20 @@ class ShelfItem extends Component {
             <div className="shelf-item" id = {flightInfo.departureLoc} onClick={() => this.bold()}>
                 <span className="shelf-item-flight">
                     <div>
-                        <span>{flightInfo.departureLoc}</span>
-                        <span>{flightInfo.arrivalLoc}</span>
+                        <span className="shelf-item-flight-location-and-time">Departure Location: {flightInfo.departureLoc}</span>
+                        <span className="shelf-item-flight-location-and-time">Arrival Location: {flightInfo.arrivalLoc}</span>
                     </div>
                     <div>
-                        <span>{flightInfo.departureTime}</span>
-                        <span>{flightInfo.arrivalTime}</span>
+                        <span className="shelf-item-flight-location-and-time">Departure Time: {flightInfo.departureTime}</span>
+                        <span className="shelf-item-flight-location-and-time">Arrival Time: {flightInfo.arrivalTime}</span>
                     </div>
                     <div>{flightInfo.flightNo}</div>
                 </span>
 
                 <span className="shelf-item-user">
                     <div>{listing.vendorName}</div>
-                    <div>{listing.price}</div>
-                    <div>{listing.weight}</div>
+                    <div>Price (USD): ${listing.price}</div>
+                    <div>Weight(lbs): {listing.weight}</div>
                 </span>
             </div>
         )

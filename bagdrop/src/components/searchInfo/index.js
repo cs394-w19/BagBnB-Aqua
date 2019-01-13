@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./style.scss"
 
 class SearchInfo extends Component {
 
@@ -12,13 +13,18 @@ class SearchInfo extends Component {
         this.props.onDateChange(e.target.value)
     }
     render(){
+        this.handleFromChange = this.handleFromChange.bind(this);
+        this.handleToChange = this.handleToChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
         const searchParams = this.props.searchParams;
+        console.log(this.props);
         return (
-            <div>
-                <input type="text" name="From" value={searchParams.from} onChange={this.handleFromChange}/>
-                <input type="text" name="To" value={searchParams.to} onChange={this.handleToChange}/>
-                <input type="text" name="Date" value={searchParams.date} onChange={this.handleDateChange}/>
-            </div>
+            <form className="flight-search">
+
+                <input placeholder="Destination (i.e., ORD)" className= "flight-search-input" type="text" name="From" value={searchParams.from} onChange={this.handleFromChange}/>
+                <input placeholder="Arrival (i.e., LGA)"className= "flight-search-input"type="text" name="To" value={searchParams.to} onChange={this.handleToChange}/>
+                <input className= "flight-search-input" type="datetime-local" name="Date" value={searchParams.date} onChange={this.handleDateChange}/>
+            </form>
 
         )
     }
