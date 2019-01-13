@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import './style.scss';
 
 class ShelfItem extends Component {
+
+    bold = () =>{
+        const listing  = this.props.listing
+        console.log(listing);
+        document.getElementById(listing.flightInfo.departureLoc).style.border = "8px Solid Black";
+    };
+
     render() {
         const listing  = this.props.listing
         console.log(listing)
         const flightInfo = listing.flightInfo
         return (
-            <div className="shelf-item">
-
+            <div className="shelf-item" id = {flightInfo.departureLoc} onClick={() => this.bold()}>
                 <span className="shelf-item-flight">
                     <div>
                         <span>{flightInfo.departureLoc}</span>

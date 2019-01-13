@@ -7,7 +7,7 @@ class ResultsShelf extends Component {
         const listings = this.props.listings;
         const items = listings.map((l) => <ShelfItem listing={l}/>)
         return (
-            <div className="results-shelf">
+            <div className="result-shelf">
             	<h1>Search Results:</h1>
                 {items}
             </div>
