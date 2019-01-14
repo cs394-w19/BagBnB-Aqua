@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import ResultsShelf from '../resultsShelf'
-import SearchInfo from '../searchInfo'
 import data from '../../data/data.json'
 import './style.scss'
+
+import ResultsShelf from '../resultsShelf'
+import SearchInfo from '../searchInfo'
 
 class ResultsScreen extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class ResultsScreen extends Component {
             searchParams: {
                 to: '',
                 from: '',
-                date: new Date(),
+                date: new Date().toISOString(),
             }
         };
     }
@@ -23,7 +24,7 @@ class ResultsScreen extends Component {
     };
     onToChange = (to) => {
         const state = this.state;
-        state.searchParams.to = to.toUpperCase();
+        state.searchParams.to = to;
         this.setState(state);
     };
     onDateChange = (date) => {
@@ -35,8 +36,14 @@ class ResultsScreen extends Component {
     render() {
         return (
             <div className='results-screen'>
-                <SearchInfo searchParams={this.state.searchParams} onFromChange={this.onFromChange} onToChange={this.onToChange} onDateChange={this.onDateChange}/>
-                <ResultsShelf listings={data.listings} searchParams={this.state.searchParams}/>
+                <SearchInfo
+                    searchParams={this.state.searchParams}
+                    onFromChange={this.onFromChange}
+                    onToChange={this.onToChange}
+                    onDateChange={this.onDateChange}/>
+                <ResultsShelf
+                    listings={data.listings}
+                    searchParams={this.state.searchParams}/>
             </div>
         )
     }
