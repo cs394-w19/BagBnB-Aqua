@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "username": "jackburtis",
+      "rating": 4.7,
+      "firstName": "Jack",
+      "lastName": "Burtis"
+    },
+    {
+      "username": "garionng",
+      "rating": 4.4,
+      "firstName": "Garion",
+      "lastName": "Ng"
+    },
+    {
+      "username": "matthewa",
+      "rating": 4.6,
+      "firstName": "Matthew",
+      "lastName": "Adams"
+    }
+  ]
+}

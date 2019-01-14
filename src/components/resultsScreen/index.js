@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import data from '../../data/data.json'
+import {withRouter} from 'react-router-dom';
 import './style.scss'
 
 import ResultsShelf from '../resultsShelf'
@@ -15,6 +15,7 @@ class ResultsScreen extends Component {
                 date: new Date().toISOString(),
             }
         };
+        this.onBookClick = this.onBookClick.bind(this);
     }
 
     onFromChange = (from) => {
@@ -33,6 +34,16 @@ class ResultsScreen extends Component {
         this.setState(state);
     };
 
+    onBookClick = (listingId, username) => {
+        // let listing = this.props.listings.find((l) => l.id === listingId);
+        // listing.booked = true;
+        // listing.bookedBy = username;
+        this.props.history.push({
+            pathname: "/confirmation",
+            search: "?id=" + listingId
+        });
+    }
+
     render() {
         return (
             <div className='results-screen'>
@@ -42,11 +53,12 @@ class ResultsScreen extends Component {
                     onToChange={this.onToChange}
                     onDateChange={this.onDateChange}/>
                 <ResultsShelf
-                    listings={data.listings}
-                    searchParams={this.state.searchParams}/>
+                    listings={this.props.listings}
+                    searchParams={this.state.searchParams}
+                    onBookClick={this.onBookClick}/>
             </div>
         )
     }
 }
 
-export default ResultsScreen;
+export default withRouter(ResultsScreen);

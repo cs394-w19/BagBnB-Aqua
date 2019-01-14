@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import "./style.scss"
 
 class SearchInfo extends Component {
+    constructor(props) {
+        super(props);
+        this.handleFromChange = this.handleFromChange.bind(this);
+        this.handleToChange = this.handleToChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+    }
 
     handleFromChange(e) {
         this.props.onFromChange(e.target.value)
@@ -14,9 +20,6 @@ class SearchInfo extends Component {
     }
 
     render(){
-        this.handleFromChange = this.handleFromChange.bind(this);
-        this.handleToChange = this.handleToChange.bind(this);
-        this.handleDateChange = this.handleDateChange.bind(this);
         const searchParams = this.props.searchParams;
         return (
             <form className="flight-search">
@@ -24,7 +27,6 @@ class SearchInfo extends Component {
                 <input placeholder="Arrival (i.e., LGA)"className= "flight-search-input"type="text" value={searchParams.to} onChange={this.handleToChange}/>
                 <input className= "flight-search-input" type="datetime-local" value={searchParams.date} onChange={this.handleDateChange}/>
             </form>
-
         )
     }
 }

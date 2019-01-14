@@ -41,7 +41,9 @@ class ShelfItem extends Component {
                     <div>{listing.vendorName}</div>
                     <div>Price (USD): ${listing.price}</div>
                     <div>Weight(lbs): {listing.weight}</div>
+                    <div>Listed By: {listing.listedBy}</div>
                 </span>
+                <button className={"shelf-item-book-btn"} onClick={() => this.props.onBookClick(listing.id, "matthewa")}>Book</button>
             </div>
         )
     }

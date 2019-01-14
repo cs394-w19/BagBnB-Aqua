@@ -5,15 +5,15 @@ import ShelfItem from '../shelfItem';
 
 class ResultsShelf extends Component {
     matchStrings(searchStr, listingStr) {
-        return (listingStr.includes(searchStr.toUpperCase()) || searchStr === '')
+        return (listingStr.includes(searchStr.toUpperCase()) || searchStr === "")
     }
     render() {
-        const { listings, searchParams } = this.props;
+        const { listings, searchParams, onBookClick } = this.props;
         const filteredListings = listings.filter((l) =>
-            (this.matchStrings(searchParams.from, l.flightInfo.departureLoc) &&
+            (!l.booked &&
+                this.matchStrings(searchParams.from, l.flightInfo.departureLoc) &&
                 this.matchStrings(searchParams.to, l.flightInfo.arrivalLoc)));
-        const items = filteredListings.map((l) => <ShelfItem listing={l}/>);
-
+        const items = filteredListings.map((l) => <ShelfItem listing={l} onBookClick={onBookClick}/>);
         return (
             <div className="result-shelf">
             	<h1>Search Results:</h1>
