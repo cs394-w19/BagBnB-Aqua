@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import ShelfItem from '../shelfItem';
 import './style.scss';
 
+import ShelfItem from '../shelfItem';
+
 class ResultsShelf extends Component {
-    matchLocations(searchParams, listing){
-        const departure = listing.flightInfo.departureLoc;
-        return (listing.flightInfo.departureLoc.includes(searchParams.from.toUpperCase())  || searchParams.from === "")
-            && (listing.flightInfo.arrivalLoc.includes(searchParams.to.toUpperCase()) || searchParams.to === "");
+    matchStrings(searchStr, listingStr) {
+        return (listingStr.includes(searchStr.toUpperCase()) || searchStr === '')
     }
     render() {
-        const listings = this.props.listings;
-        const searchParams = this.props.searchParams;
+        const { listings, searchParams } = this.props;
         const filteredListings = listings.filter((l) =>
-            this.matchLocations(searchParams, l));
-        const items = filteredListings.map((l) => <ShelfItem listing={l}/>)
-
+            (this.matchStrings(searchParams.from, l.flightInfo.departureLoc) &&
+                this.matchStrings(searchParams.to, l.flightInfo.arrivalLoc)));
+        const items = filteredListings.map((l) => <ShelfItem listing={l}/>);
 
         return (
             <div className="result-shelf">
