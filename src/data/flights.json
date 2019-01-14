@@ -1,0 +1,17 @@
+{
+	"flights":[
+		
+		{"flightNumber": "AA 25",
+		"departureLoc:": "ORD",
+		"arrivalLoc": "LGA"},
+		
+		{"flightNumber": "TK 5",
+		"departureLoc:": "IST",
+		"arrivalLoc": "ORD"},
+		
+		{"flightNumber": "AA 12",
+		"departureLoc": "LAX",
+		"arrivalLoc": "LHR"}
+
+	]
+}

@@ -25,6 +25,12 @@ class Confirmation extends Component {
                 }}>
                     Confirm Booking
                 </button>
+
+                <button onClick={() => 
+                    
+                    this.props.history.push("/listings")
+                }> Back
+                </button> 
             </div>
         )
     }

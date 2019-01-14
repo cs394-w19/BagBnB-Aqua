@@ -3,6 +3,7 @@ import './App.css';
 import ResultsScreen from './components/resultsScreen'
 import Confirmation from './components/confirmation'
 import {BrowserRouter, Route} from 'react-router-dom'
+import Homepage from "./components/homepage"
 
 import data from './data/data.json'
 
@@ -18,12 +19,10 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className="App">
-                    {/*<Route path='/' render={ () => (*/}
-                    {/*<div className="App">*/}
-                    {/*<HomePage />*/}
-                    {/*</div>*/}
-                    {/*)*/}
-                    {/*}/>*/}
+                    <Route path='/' render={ () => (
+                        <Homepage />
+                    )}
+                    />
                     <Route path='/listings' render={() => (
                         <ResultsScreen listings={data.listings}/>
                     )

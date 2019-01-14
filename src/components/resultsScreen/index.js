@@ -13,6 +13,7 @@ class ResultsScreen extends Component {
                 to: '',
                 from: '',
                 date: new Date().toISOString(),
+                flightNumber: ''
             }
         };
         this.onBookClick = this.onBookClick.bind(this);
@@ -33,6 +34,11 @@ class ResultsScreen extends Component {
         state.searchParams.date = date;
         this.setState(state);
     };
+    onFlightNumberChange = (flightNumber) => {
+        const state = this.state;
+        state.searchParams.flightNumber = flightNumber;
+        this.setState(state);
+    };
 
     onBookClick = (listingId, username) => {
         // let listing = this.props.listings.find((l) => l.id === listingId);
@@ -51,7 +57,8 @@ class ResultsScreen extends Component {
                     searchParams={this.state.searchParams}
                     onFromChange={this.onFromChange}
                     onToChange={this.onToChange}
-                    onDateChange={this.onDateChange}/>
+                    onDateChange={this.onDateChange}
+                    onFlightNumberChange={this.onFlightNumberChange}/>
                 <ResultsShelf
                     listings={this.props.listings}
                     searchParams={this.state.searchParams}
