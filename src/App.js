@@ -19,7 +19,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className="App">
-                    <Route path='/' render={ () => (
+                    <Route exact path='/' render={ () => (
                         <Homepage />
                     )}
                     />
