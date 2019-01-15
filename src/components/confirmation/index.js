@@ -21,7 +21,10 @@ class Confirmation extends Component {
                 <p>Time of Flight: {listing.flightInfo.departureTime}</p>
                 <button onClick={() => {
                     onConfirmClick(listingId, "matthewa");
-                    this.props.history.push("/listings");
+                    this.props.history.push({
+                        pathname: "/reservations",
+                        search: "?username=" + "karenk"
+                    });
                 }}>
                     Confirm Booking
                 </button>

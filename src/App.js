@@ -4,6 +4,7 @@ import ResultsScreen from './components/resultsScreen'
 import Confirmation from './components/confirmation'
 import {BrowserRouter, Route} from 'react-router-dom'
 import Homepage from "./components/homepage"
+import ReservationsScreen from './components/reservationPage'
 
 import data from './data/data.json'
 
@@ -31,6 +32,10 @@ class App extends Component {
                         <Confirmation
                             listings={data.listings}
                             onConfirmClick={this.onConfirmClick}/>
+                    )
+                    }/>
+                    <Route path='/reservations' render={() => (
+                        <ReservationsScreen listings={data.listings}/>
                     )
                     }/>
                 </div>

@@ -17,7 +17,14 @@ class Homepage extends Component {
                     <button className="homepage-options-buttons">
                         Sell Luggage Allowance
                     </button>
+
+
                 </div>
+                <button className="homepage-options-buttons" onClick={() =>
+                    this.props.history.push("/reservations")
+                }>
+                    See Reservations
+                </button>
             </div>
 
         )
