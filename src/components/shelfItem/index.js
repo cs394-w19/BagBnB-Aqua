@@ -16,6 +16,17 @@ class ShelfItem extends Component {
         this.setState({isBold: !prevState});
     };
 
+    formatDate = (l) => {
+        let date = toString(l.date)
+        let dep = toString(l.departureTime)
+        let arr = toString(l.arrivalTime)
+        let year = date.split("-")[0]
+        let month = date.split("-")[1]
+        let day = date.split("-")[2]
+        let formattedDate = toString(month) + "/" + toString(day) + "/" + toString(year)
+        return formattedDate
+    }
+
     render() {
         const listing  = this.props.listing;
         const flightInfo = listing.flightInfo;
@@ -23,29 +34,45 @@ class ShelfItem extends Component {
             "shelf-item",
             {"shelf-item-bold": this.state.isBold}
         )
-        return (
-            <div className={classname} onClick={this.onClick}>
-                <span className="shelf-item-flight">
-                    <div>
-                        <span className="shelf-item-flight-location-and-time">Departure Location: {flightInfo.departureLoc}</span>
-                        <span className="shelf-item-flight-location-and-time">Arrival Location: {flightInfo.arrivalLoc}</span>
-                    </div>
-                    <div>
-                        <span className="shelf-item-flight-location-and-time">Departure Time: {flightInfo.departureTime}</span>
-                        <span className="shelf-item-flight-location-and-time">Arrival Time: {flightInfo.arrivalTime}</span>
-                    </div>
-                    <div>{flightInfo.flightNo}</div>
+        return <div className={classname} onClick={this.onClick}>
+            <span className="shelf-item-flight" onClick={this.formatDate(flightInfo)}>
+              <div>
+                <span className="shelf-item-flight-vendor-and-number">
+                  {listing.vendorName}
                 </span>
+              </div>
+              <div>
+                <span className="shelf-item-flight-location-and-time">
+                  {flightInfo.departureLoc}
+                </span> &#8594;
+                <span className="shelf-item-flight-location-and-time">
+                  {flightInfo.arrivalLoc}
+                </span>
+              </div>
+              <div>
+                <span className="shelf-item-flight-location-and-time">
+                  {flightInfo.departureTime}
+                </span>
+                &ndash;
+                <span className="shelf-item-flight-location-and-time">
+                  {flightInfo.arrivalTime}
+                </span>
+              </div>
+              <div>
+                    <span className="shelf-item-flight-location-and-time">
+                        {flightInfo.date}
+                    </span>
+              </div>
+            </span>
 
-                <span className="shelf-item-user">
-                    <div>{listing.vendorName}</div>
-                    <div>Price (USD): ${listing.price}</div>
-                    <div>Weight(lbs): ${listing.weight}</div>
-                    <div>Listed By: {listing.listedBy}</div>
-                </span>
-                <button className={"shelf-item-book-btn"} onClick={() => this.props.onBookClick(listing.id, "matthewa")}>Book</button>
-            </div>
-        )
+            <span className="shelf-item-user">
+              <div>Price ${listing.price}</div>
+              <div>Weight: {listing.weight} </div>
+            </span>
+            <button className={"shelf-item-book-btn"} onClick={() => this.props.onBookClick(listing.id, "matthewa")}>
+              Book
+            </button>
+          </div>;
     }
 }
 

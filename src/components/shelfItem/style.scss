@@ -4,12 +4,8 @@
   border: 2px Solid Black;
   display: flex;
   justify-content: space-around;
-  margin: 10px 200px;
-
-  &-bold{
-    border: 8px Solid Black;
-  }
-
+  margin: 10px auto;
+  
   &-flight{
     &-location-and-time{
       margin: 15px;
