@@ -1,33 +1,28 @@
 .shelf-item {
-  color: black;
-  font-family: verdana;
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 10px auto;
-  width: 70%;
-  background: rgba(255, 255, 255, 0.5);
-
-  &-flight {
-    &-location-and-time {
-      margin: 15px;
+    outline: 1px solid black;
+    margin: .5em;
+    padding: .5em;
+    &-info {
+        display: flex;
+        &-baggage {
+            width: 30%;
+            font-size: 1.5em;
+            text-align: right;
+        }
+        &-flight {
+            width: 70%;
+            &-vendor {
+                font-size: .75em;
+            }
+            &-location {
+                font-size: 1.25em;
+            }
+        }
     }
-  }
-
-  &-user {
-    //float:right;
-  }
+    &-book {
+        &-button {
+            width: 100%;
+            margin: .5em 0 0 0 !important;
+        }
+    }
 }
-
-.shelf-item-book-btn {
-  color: white;
-  background-color: black;
-  border-radius: 10px;
-  border: 0;
-  height: 30px;
-  width: 80px;
-}
-
-;

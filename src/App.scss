@@ -1,9 +1,22 @@
-
-.App {
-  text-align: center;
-  background-image: url("background.jpeg");
-  background-size: 100vw;
-  background-position: bottom;
-  background-attachment: fixed;
+* {
+  box-sizing: border-box;
 }
 
+.app {
+  .logo {
+    width: 70vw;
+    margin: 30px auto 10px calc(50vw - 72vw / 2);
+  }
+  font-family: "Futura";
+  button {
+    padding: 10px;
+    margin: 10px;
+    border: solid black 1px;
+    border-radius: 1px;
+    background: rgb(240, 238, 246);
+
+    font-family: "Futura";
+  }
+  button:hover {
+  }
+}

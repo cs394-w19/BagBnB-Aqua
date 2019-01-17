@@ -3,9 +3,9 @@ import {withRouter} from 'react-router-dom';
 import reservationData from "../../data/reservations.json";
 import usersData from "../../data/user.json";
 import ReservationItem from "../reservationItem";
+import "./style.scss";
 
 const qs = require('query-string');
-
 
 class ReservationScreen extends Component {
 
@@ -31,15 +31,15 @@ class ReservationScreen extends Component {
         if (filteredReservations.length === 0) {
             return (
                 <div>
-                    <h1>Reservations for {user.firstName} {user.lastName}:</h1>
+                    <h2>Reservations for {user.firstName} {user.lastName}:</h2>
                     <h2>No Reservations!</h2>
                 </div>
             )
         }
 
         return (
-            <div>
-                <h1>Reservations for {user.firstName} {user.lastName}:</h1>
+            <div className="lazy-reservation-styling">
+                <h2>Reservations for {user.firstName} {user.lastName}:</h2>
                 <div>
                     {items}
                 </div>

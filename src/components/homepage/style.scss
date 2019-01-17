@@ -1,40 +1,32 @@
 .homepage {
-  height: 100vh;
-  width: 100vw;
-
-
+  height: 84.5vh;
   &-title {
-    color: black;
-    font-size: 46px;
-    padding: 23px 0;
+    font-size: 3rem;
+    text-align: center;
+    padding: 0.5em 0;
+    margin: 0 0;
   }
-
   &-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 81vh;
   }
-
   &-luggage {
-    &-buttons {
-      background: #000;
-      border-radius: 10px;
-      border: 0;
-      color: #fff;
-      margin: 5px;
-      height: 25vh;
-    }
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
   }
 
   &-reservation {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
     &-buttons {
-      background-color: #B328b463;
-      border-radius: 10px;
-      border: 0;
-      color: #fff;
-      height: 10vh;
-      width: 100px;
-      margin: auto;
+      width: 400px;
+
     }
   }
 }

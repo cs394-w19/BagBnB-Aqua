@@ -1,12 +1,21 @@
 .flight-search {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-
-  &-input {
-    margin: 15px;
-    font-size: 15px;
-    width: 40%;
-    display: block;
-  }
+    margin: 0 0 .5em 0;
+    &-container {
+        display: flex;
+    }
+    &-input {
+        font-family: "Futura";
+        outline: solid black 1px;
+        padding: .5em;
+        margin: .5em;
+        &--half {
+            width: 50%;
+        }
+        &--third {
+            width: 33%;
+        }
+        &--twothird {
+            width: 60%;
+        }
+    }
 }
