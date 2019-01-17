@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 import ResultsScreen from './components/resultsScreen'
 import Confirmation from './components/confirmation'
 import {BrowserRouter, Route} from 'react-router-dom'
@@ -7,6 +6,7 @@ import Homepage from "./components/homepage"
 import ReservationsScreen from './components/reservationPage'
 
 import data from './data/data.json'
+import "./App.scss";
 
 class App extends Component {
 
