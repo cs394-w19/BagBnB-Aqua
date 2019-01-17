@@ -32,7 +32,8 @@ class Homepage extends Component {
                     </div>
                     <button
                         className="homepage-reservation-buttons"
-                        onClick={() => this.props.history.push("/reservations")}
+                        //onClick={() => this.props.history.push("/reservations")}
+                        onClick={() => this.onReserveClick("karenk")}
                     >
                         See Reservations
                     </button>
