@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
+import './style.scss';
 
 const qs = require('query-string');
 
 class Confirmation extends Component {
 
     render() {
-        const {listings, onConfirmClick} = this.props;
+        const { listings, onConfirmClick } = this.props;
         const listingId = qs.parse(this.props.location.search).id;
         const listing = listings.find((l) => l.id === listingId);
         return (
-            <div>
-                <p>
-                    Please confirm your booking with {listing.listedBy}.
-                </p>
+            <div className="confirmation-page">
+                <p>Please confirm your booking with {listing.listedBy}.</p>
                 <h2>Booking details:</h2>
                 <p>Price: {listing.price}</p>
                 <p>Weight: {listing.weight}</p>
@@ -29,10 +28,8 @@ class Confirmation extends Component {
                     Confirm Booking
                 </button>
 
-                <button onClick={() => 
-                    
-                    this.props.history.push("/listings")
-                }> Back
+                <button onClick={() => this.props.history.push("/listings")}>
+                    Back
                 </button> 
             </div>
         )

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import "./style.scss"
+import React, {Component} from 'react';
+import "./style.scss";
 
 class SearchInfo extends Component {
     constructor(props) {
@@ -13,30 +13,38 @@ class SearchInfo extends Component {
     handleFromChange(e) {
         this.props.onFromChange(e.target.value)
     }
+
     handleToChange(e) {
         this.props.onToChange(e.target.value)
     }
+
     handleDateChange(e) {
         this.props.onDateChange(e.target.value)
     }
+
     handleFlightNumberChange(e) {
         this.props.onFlightNumberChange(e.target.value)
     }
 
-    render(){
+    render() {
         const searchParams = this.props.searchParams;
         return (
             <div>
-            <form className="flight-search">
-                <input placeholder="Departure (i.e., ORD)" className= "flight-search-input" type="text" value={searchParams.from} onChange={this.handleFromChange}/>
-                <input placeholder="Arrival (i.e., LGA)"className= "flight-search-input"type="text" value={searchParams.to} onChange={this.handleToChange}/>
-                <input className= "flight-search-input" type="datetime-local" value={searchParams.date} onChange={this.handleDateChange}/>
-            </form>
-            <form className ="flight-search">
-                <input placeholder="Flight Number (i.e 2347758488)" className="flight-search-input" type="text" value={searchParams.flightNumber} onChange={this.handleFlightNumberChange}/ >
-            </form>
+                <form className="flight-search">
+                    <input placeholder="Departure (i.e., ORD)" className="flight-search-input" type="text"
+                           value={searchParams.from} onChange={this.handleFromChange}/>
+                    <input placeholder="Arrival (i.e., LGA)" className="flight-search-input" type="text"
+                           value={searchParams.to} onChange={this.handleToChange}/>
+                    <input className="flight-search-input" type="datetime-local" value={searchParams.date}
+                           onChange={this.handleDateChange}/>
+                </form>
+                <form className="flight-search">
+                    <input placeholder="Flight Number (i.e 2347758488)" className="flight-search-input" type="text"
+                           value={searchParams.flightNumber} onChange={this.handleFlightNumberChange}/>
+                </form>
             </div>
         )
     }
 }
+
 export default SearchInfo;

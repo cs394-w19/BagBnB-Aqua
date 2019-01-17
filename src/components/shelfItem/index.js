@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './style.scss';
 
 const classNames = require('classnames');
@@ -11,7 +11,7 @@ class ShelfItem extends Component {
         };
     }
 
-    onClick = () =>{
+    onClick = () => {
         const prevState = this.state.isBold;
         this.setState({isBold: !prevState});
     };
@@ -28,14 +28,14 @@ class ShelfItem extends Component {
     }
 
     render() {
-        const listing  = this.props.listing;
+        const listing = this.props.listing;
         const flightInfo = listing.flightInfo;
         const classname = classNames(
             "shelf-item",
             {"shelf-item-bold": this.state.isBold}
         )
         return <div className={classname} onClick={this.onClick}>
-            <span className="shelf-item-flight" onClick={this.formatDate(flightInfo)}>
+            <span className="shelf-item-flight">
               <div>
                 <span className="shelf-item-flight-vendor-and-number">
                   {listing.vendorName}
@@ -45,7 +45,7 @@ class ShelfItem extends Component {
                 <span className="shelf-item-flight-location-and-time">
                   {flightInfo.departureLoc}
                 </span> &#8594;
-                <span className="shelf-item-flight-location-and-time">
+                  <span className="shelf-item-flight-location-and-time">
                   {flightInfo.arrivalLoc}
                 </span>
               </div>
@@ -53,8 +53,8 @@ class ShelfItem extends Component {
                 <span className="shelf-item-flight-location-and-time">
                   {flightInfo.departureTime}
                 </span>
-                &ndash;
-                <span className="shelf-item-flight-location-and-time">
+                  &ndash;
+                  <span className="shelf-item-flight-location-and-time">
                   {flightInfo.arrivalTime}
                 </span>
               </div>
@@ -70,9 +70,9 @@ class ShelfItem extends Component {
               <div>Weight: {listing.weight} </div>
             </span>
             <button className={"shelf-item-book-btn"} onClick={() => this.props.onBookClick(listing.id, "matthewa")}>
-              Book
+                Book
             </button>
-          </div>;
+        </div>;
     }
 }
 

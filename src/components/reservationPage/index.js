@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import reservationData from "../../data/reservations.json";
 import usersData from "../../data/user.json";
 import ReservationItem from "../reservationItem";
+
 const qs = require('query-string');
 
 
@@ -15,39 +16,30 @@ class ReservationScreen extends Component {
     }
 
     render() {
-
+        const listings = this.props.listings;
         const username = qs.parse(this.props.location.search).username;
         const filteredReservations = this.retrieveReservations(username);
         const items = filteredReservations.map((r) => {
-            const listings = this.props.listings;
             const listing = listings.find((l) => (l.id === r.listingId));
             const vendorUser = usersData.users.find((u) => (u.username === r.vendorUsername));
-            console.log(listing);
-
             return (
-                <ReservationItem reservation={r} listing = {listing} user = {vendorUser}/>
+                <ReservationItem reservation={r} listing={listing} user={vendorUser}/>
             )
         });
 
         const user = usersData.users.find((u) => (u.username === username));
-        if(filteredReservations.length === 0){
-            return(
+        if (filteredReservations.length === 0) {
+            return (
                 <div>
-                    <h1>
-                        Reservations for {user.firstName} {user.lastName}:
-                    </h1>
-                    <div>
-                        No Reservations!
-                    </div>
+                    <h1>Reservations for {user.firstName} {user.lastName}:</h1>
+                    <h2>No Reservations!</h2>
                 </div>
             )
         }
 
         return (
             <div>
-                <h1>
-                    Reservations for {user.firstName} {user.lastName}:
-                </h1>
+                <h1>Reservations for {user.firstName} {user.lastName}:</h1>
                 <div>
                     {items}
                 </div>

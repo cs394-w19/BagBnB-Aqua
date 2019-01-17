@@ -1,11 +1,13 @@
 .shelf-item {
-  color: grey;
-  font: verdana;
+  color: black;
+  font-family: verdana;
   border: 2px Solid Black;
   display: flex;
   justify-content: space-around;
   margin: 10px auto;
-  
+  width: 70%;
+  background: rgba(255, 255, 255, 0.5);
+
   &-flight{
     &-location-and-time{
       margin: 15px;

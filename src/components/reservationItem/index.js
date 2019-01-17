@@ -3,38 +3,24 @@ import React, {Component} from 'react';
 class ReservationItem extends Component {
 
     render() {
-        const listing = this.props.listing;
+        const {listing, user} = this.props;
+        const flightInfo = listing.flightInfo;
         return (
             <div>
-                <span>Flight Info:
-                    <div>
-                        <div>
-                        Departure: {listing.flightInfo.departureLoc} {listing.flightInfo.departureTime}
-                        </div>
-                        <div>
-                        Arrival: {listing.flightInfo.arrivalLov} {listing.flightInfo.arrivalTime}
-                        </div>
-                        <div>
-                            Flight Number: {listing.flightInfo.flightNumber}
-                        </div>
-                    </div>
+                <span>
+                    <h2>Flight Info:</h2>
+                    <p>Departure: {flightInfo.departureLoc} {flightInfo.departureTime}</p>
+                    <p>Arrival: {flightInfo.arrivalLoc} {flightInfo.arrivalTime}</p>
+                    <p>Flight Number: {flightInfo.flightNumber}</p>
                 </span>
                 <span>
-                    Vendor Info:
-                    <div>
-                        Name: {this.props.user.firstName} {this.props.user.lastName}
-                    </div>
-                    <div>
-                        Phone Number: {this.props.user.phoneNumber}
-                    </div>
-
+                    <h2>Vendor Info:</h2>
+                    <p>Name: {user.firstName} {user.lastName}</p>
+                    <p>Phone Number: {user.phoneNumber}</p>
                 </span>
-
             </div>
-
         );
     }
-
 }
 
 export default ReservationItem;

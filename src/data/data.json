@@ -2,12 +2,12 @@
   "listings": [
     {
       "flightInfo": {
-        "departureLoc": "LAX",
-        "arrivalLoc": "LHR",
+        "departureLoc": "ORD",
+        "arrivalLoc": "LGA",
         "departureTime": "13:00",
         "arrivalTime": "20:00",
         "date": "2018-01-14",
-        "flightNumber": "AA 12"
+        "flightNumber": "UT 12"
       },
       "id": "00001",
       "vendorName": "United",

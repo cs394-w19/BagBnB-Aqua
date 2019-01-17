@@ -40,10 +40,7 @@ class ResultsScreen extends Component {
         this.setState(state);
     };
 
-    onBookClick = (listingId, username) => {
-        // let listing = this.props.listings.find((l) => l.id === listingId);
-        // listing.booked = true;
-        // listing.bookedBy = username;
+    onBookClick = (listingId) => {
         this.props.history.push({
             pathname: "/confirmation",
             search: "?id=" + listingId
