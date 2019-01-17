@@ -28,7 +28,7 @@ class SearchInfo extends Component {
         return (
             <div>
             <form className="flight-search">
-                <input placeholder="Destination (i.e., ORD)" className= "flight-search-input" type="text" value={searchParams.from} onChange={this.handleFromChange}/>
+                <input placeholder="Departure (i.e., ORD)" className= "flight-search-input" type="text" value={searchParams.from} onChange={this.handleFromChange}/>
                 <input placeholder="Arrival (i.e., LGA)"className= "flight-search-input"type="text" value={searchParams.to} onChange={this.handleToChange}/>
                 <input className= "flight-search-input" type="datetime-local" value={searchParams.date} onChange={this.handleDateChange}/>
             </form>

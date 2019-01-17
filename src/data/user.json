@@ -4,19 +4,29 @@
       "username": "jackburtis",
       "rating": 4.7,
       "firstName": "Jack",
-      "lastName": "Burtis"
+      "lastName": "Burtis",
+      "phoneNumber": "222-134-2444"
     },
     {
       "username": "garionng",
       "rating": 4.4,
       "firstName": "Garion",
-      "lastName": "Ng"
+      "lastName": "Ng",
+      "phoneNumber": "212-133-4444"
     },
     {
       "username": "matthewa",
       "rating": 4.6,
       "firstName": "Matthew",
-      "lastName": "Adams"
+      "lastName": "Adams",
+      "phoneNumber": "552-134-2444"
+    },
+    {
+      "username": "karenk",
+      "rating": 4.6,
+      "firstName": "Karen",
+      "lastName": "Kap",
+      "phoneNumber": "552-134-2444"
     }
   ]
 }

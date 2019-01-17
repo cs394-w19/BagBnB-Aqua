@@ -12,7 +12,7 @@ class Confirmation extends Component {
         return (
             <div>
                 <p>
-                    Your booking with {listing.listedBy} is confirmed.
+                    Please confirm your booking with {listing.listedBy}.
                 </p>
                 <h2>Booking details:</h2>
                 <p>Price: {listing.price}</p>
@@ -20,7 +20,7 @@ class Confirmation extends Component {
                 <p>Date of Flight: {listing.flightInfo.date}</p>
                 <p>Time of Flight: {listing.flightInfo.departureTime}</p>
                 <button onClick={() => {
-                    onConfirmClick(listingId, "matthewa");
+                    onConfirmClick(listingId, "karenk");
                     this.props.history.push({
                         pathname: "/reservations",
                         search: "?username=" + "karenk"

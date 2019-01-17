@@ -11,7 +11,12 @@
 		
 		{"flightNumber": "AA 12",
 		"departureLoc": "LAX",
-		"arrivalLoc": "LHR"}
+		"arrivalLoc": "LHR"},
+
+		{	"flightNumber": "SW 20",
+			"departureLoc": "OHR",
+			"arrivalLoc": "JFK"
+		}
 
 	]
 }

@@ -6,7 +6,8 @@
         "arrivalLoc": "LHR",
         "departureTime": "13:00",
         "arrivalTime": "20:00",
-        "date": "2018-01-14"
+        "date": "2018-01-14",
+        "flightNumber": "AA 12"
       },
       "id": "00001",
       "vendorName": "United",
@@ -22,7 +23,8 @@
         "arrivalLoc": "JFK",
         "departureTime": "10:00",
         "arrivalTime": "12:50",
-        "date": "2018-01-14"
+        "date": "2018-01-14",
+        "flightNumber": "SW 20"
       },
       "id": "00002",
       "vendorName": "Delta",
@@ -30,6 +32,40 @@
       "weight": 3,
       "booked": false,
       "listedBy": "garionng",
+      "bookedBy": ""
+    },
+    {
+      "flightInfo": {
+        "departureLoc": "LAX",
+        "arrivalLoc": "OHL",
+        "departureTime": "18:00",
+        "arrivalTime": "22:00",
+        "date": "2018-01-14",
+        "flightNumber": "AA 32"
+      },
+      "id": "00003",
+      "vendorName": "American Airlines",
+      "price": 35,
+      "weight": 40,
+      "booked": false,
+      "listedBy": "davidr",
+      "bookedBy": ""
+    },
+    {
+      "flightInfo": {
+        "departureLoc": "HTH",
+        "arrivalLoc": "JFK",
+        "departureTime": "06:00",
+        "arrivalTime": "10:50",
+        "date": "2018-01-14",
+        "flightNumber": "SW 28"
+      },
+      "id": "00004",
+      "vendorName": "Southwest",
+      "price": 60,
+      "weight": 30,
+      "booked": false,
+      "listedBy": "berthaq",
       "bookedBy": ""
     }
   ]
