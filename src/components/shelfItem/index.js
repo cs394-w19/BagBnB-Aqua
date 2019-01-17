@@ -23,11 +23,6 @@ class ShelfItem extends Component {
             "shelf-item",
             {"shelf-item-bold": this.state.isBold}
         )
-        const divStyle = {
-  			color: 'white',
-  			backgroundColor: '#1c2833',
-  			borderColor: 'black'
-		};
         return (
             <div className={classname} onClick={this.onClick}>
                 <span className="shelf-item-flight">
@@ -45,10 +40,10 @@ class ShelfItem extends Component {
                 <span className="shelf-item-user">
                     <div>{listing.vendorName}</div>
                     <div>Price (USD): ${listing.price}</div>
-                    <div>Weight(lbs): {listing.weight}</div>
+                    <div>Weight(lbs): ${listing.weight}</div>
                     <div>Listed By: {listing.listedBy}</div>
                 </span>
-                <button style={divStyle} className={"shelf-item-book-btn"} onClick={() => this.props.onBookClick(listing.id, "matthewa")}>Book</button>
+                <button className={"shelf-item-book-btn"} onClick={() => this.props.onBookClick(listing.id, "matthewa")}>Book</button>
             </div>
         )
     }

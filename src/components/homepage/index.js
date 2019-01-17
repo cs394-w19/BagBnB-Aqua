@@ -5,39 +5,35 @@ import './style.scss';
 
 class Homepage extends Component {
     render() {
-    	const divStyle = {
-  			color: 'white',
-  			backgroundColor: '#1c2833',
-  			borderColor: 'black',
-  			padding: '10px'
-		};
         return (
-            <div>
-                <div className="homepage-options">
-                    <button style={divStyle} className="homepage-options-buttons" onClick={() =>
+            <div className="homepage">
+            <h1 className="homepage-title"> Bagdrop </h1>
+            <div className="homepage-container">
+
+                <div className="homepage-luggage">
+                    <button className="homepage-luggage-buttons" onClick={() =>
                         this.props.history.push("/listings")
                     }>
                         Buy Luggage Allowance
                     </button>
 
-                    <button style={divStyle} className="homepage-options-buttons">
+                    <button className="homepage-luggage-buttons">
                         Sell Luggage Allowance
                     </button>
+                    </div>
+                
 
-
-                </div>
-                <button style={divStyle} className="homepage-options-buttons" onClick={() =>
+                <button className="homepage-reservation-buttons" onClick={() =>
                     this.props.history.push("/reservations")
                 }>
                     See Reservations
                 </button>
+                </div>
             </div>
 
         )
 
     }
-
-
 }
 
 export default withRouter(Homepage);
