@@ -24,7 +24,6 @@ class ResultsShelf extends Component {
         const items = filteredListings.map((l) => <ShelfItem listing={l} onBookClick={onBookClick}/>);
         return (
             <div className="result-shelf">
-            	<h1>Search Results:</h1>
                 {items}
             </div>
         )
