@@ -1,26 +1,33 @@
 .shelf-item {
   color: black;
   font-family: verdana;
-  border: 2px Solid Black;
+  border-radius: 10px;
+  padding: 10px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin: 10px auto;
   width: 70%;
   background: rgba(255, 255, 255, 0.5);
 
-  &-flight{
-    &-location-and-time{
+  &-flight {
+    &-location-and-time {
       margin: 15px;
     }
   }
 
-  &-user{
+  &-user {
     //float:right;
   }
 }
 
 .shelf-item-book-btn {
-  	color: 'white';
-  	background-color: '#1c2833';
-  	border-color: 'black';
-};
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  border: 0;
+  height: 30px;
+  width: 80px;
+}
+
+;

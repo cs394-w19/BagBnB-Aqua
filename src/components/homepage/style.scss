@@ -18,7 +18,8 @@
   &-luggage {
     &-buttons {
       background: #000;
-      border: black solid 2px;
+      border-radius: 10px;
+      border: 0;
       color: #fff;
       margin: 5px;
       height: 25vh;
@@ -27,7 +28,9 @@
 
   &-reservation {
     &-buttons {
-      background: #28b463;
+      background-color: #B328b463;
+      border-radius: 10px;
+      border: 0;
       color: #fff;
       height: 10vh;
       width: 100px;
