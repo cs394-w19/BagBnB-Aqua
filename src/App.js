@@ -7,7 +7,7 @@ import ReservationsScreen from "./components/reservationPage";
 
 import reservations from "./data/reservations.json";
 import data from "./data/data.json";
-import "./app.scss";
+import "./App.scss";
 import logo from "./logo.svg";
 
 class App extends Component {
