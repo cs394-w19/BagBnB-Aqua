@@ -27,6 +27,20 @@
       "firstName": "Karen",
       "lastName": "Kap",
       "phoneNumber": "552-134-2444"
+    },
+    {
+      "username": "berthaq",
+      "rating": 4.6,
+      "firstName": "Bertha",
+      "lastName": "Quentin",
+      "phoneNumber": "552-134-2444"
+    },
+    {
+      "username": "davidr",
+      "rating": 4.6,
+      "firstName": "David",
+      "lastName": "Romney",
+      "phoneNumber": "552-134-2444"
     }
   ]
 }

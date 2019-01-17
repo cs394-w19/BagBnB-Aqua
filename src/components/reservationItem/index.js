@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class ReservationItem extends Component {
 
     render() {
-        const {listing, user} = this.props;
+        const {reservation, listing, user} = this.props;
         const flightInfo = listing.flightInfo;
         return (
             <div>
