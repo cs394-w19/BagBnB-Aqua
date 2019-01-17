@@ -3,7 +3,10 @@
 }
 
 .app {
-  // outline: solid black 1px;
+  .logo {
+    width: 70vw;
+    margin: 30px auto 10px calc(50vw - 72vw/2)
+  }
   font-family: "Futura";
   button {
     padding: 10px;

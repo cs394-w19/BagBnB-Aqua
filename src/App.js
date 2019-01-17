@@ -7,6 +7,7 @@ import ReservationsScreen from "./components/reservationPage";
 
 import data from "./data/data.json";
 import "./app.scss";
+import logo from "./logo.svg";
 
 class App extends Component {
   onConfirmClick = (listingId, username) => {
@@ -19,7 +20,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="app">
-          <h1 className="homepage-title"> Bagdrop </h1>
+          <img className="logo" src={logo}></img>
           <Route exact path="/" render={() => <Homepage />} />
           <Route
             path="/listings"
