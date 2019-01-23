@@ -1,22 +1,27 @@
 * {
   box-sizing: border-box;
 }
-
 .app {
-  .logo {
-    width: 70vw;
-    margin: 30px auto 10px calc(50vw - 72vw / 2);
-  }
+  display: block;
+  background-color: #007275;
   font-family: "Futura";
-  button {
-    padding: 10px;
-    margin: 10px;
-    border: solid black 1px;
-    border-radius: 1px;
-    background: rgb(240, 238, 246);
+  height: available;
+  width: available;
 
-    font-family: "Futura";
+  .header {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    .logo {
+      height: inherit;
+      padding: 20px 0 10px 0;
+    }
   }
-  button:hover {
+  .screen{
+    min-height: 597px;
+    height: fit-content;
+    width: available;
   }
 }

@@ -1,15 +1,17 @@
 .flight-search {
-    margin: 0 0 .5em 0;
-    &-container {
-        display: flex;
-    }
+    display: inline-block;
+    justify-content: space-around;
+    margin-top: 10px;
     &-input {
         font-family: "Futura";
-        outline: solid black 1px;
+        border: 0;
+        border-radius: 5px;
         padding: .5em;
-        margin: .5em;
+        margin: 10px;
+        background-color: #ffffffe6;
         &--half {
-            width: 50%;
+            width: 43%;
+
         }
         &--third {
             width: 33%;

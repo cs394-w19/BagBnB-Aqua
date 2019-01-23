@@ -30,14 +30,17 @@ class SearchInfo extends Component {
         const searchParams = this.props.searchParams;
         return (
             <div>
-            <form className="flight-search">
-            <div className="flight-search-container">
-                <input placeholder="Departure (i.e., ORD)" className= "flight-search-input flight-search-input--half" type="text" value={searchParams.from} onChange={this.handleFromChange}/>
-                <input placeholder="Arrival (i.e., LGA)"className= "flight-search-input flight-search-input--half"type="text" value={searchParams.to} onChange={this.handleToChange}/>
-                </div>
-                <input className= "flight-search-input flight-search-input--twothird" type="datetime-local" value={searchParams.date} onChange={this.handleDateChange}/>
-                <input placeholder="Flight Number (i.e VA314)" className="flight-search-input flight-search-input--third" type="text" value={searchParams.flightNumber} onChange={this.handleFlightNumberChange}/ >
-            </form>
+                <form className="flight-search">
+                    <input placeholder="Departure (i.e., ORD)" className="flight-search-input flight-search-input--half"
+                           type="text" value={searchParams.from} onChange={this.handleFromChange}/>
+                    <input placeholder="Arrival (i.e., LGA)" className="flight-search-input flight-search-input--half"
+                           type="text" value={searchParams.to} onChange={this.handleToChange}/>
+                    <input className="flight-search-input flight-search-input--twothird" type="datetime-local"
+                           value={searchParams.date} onChange={this.handleDateChange}/>
+                    <input placeholder="Flight Number (i.e VA314)"
+                           className="flight-search-input flight-search-input--third" type="text"
+                           value={searchParams.flightNumber} onChange={this.handleFlightNumberChange}/>
+                </form>
             </div>
         )
     }

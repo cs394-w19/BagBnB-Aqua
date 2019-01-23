@@ -1,28 +1,41 @@
 .shelf-item {
-    outline: 1px solid black;
-    margin: .5em;
-    padding: .5em;
-    &-info {
-        display: flex;
-        &-baggage {
-            width: 30%;
-            font-size: 1.5em;
-            text-align: right;
-        }
-        &-flight {
-            width: 70%;
-            &-vendor {
-                font-size: .75em;
-            }
-            &-location {
-                font-size: 1.25em;
-            }
-        }
+  border: 0;
+  background-color: #deb887;
+  border-radius: 10px;
+  margin: 20px 10px;
+  padding: 10px;
+
+  &-info {
+    display: flex;
+
+    &-baggage {
+      width: 30%;
+      font-size: 1.5em;
+      text-align: right;
     }
-    &-book {
-        &-button {
-            width: 100%;
-            margin: .5em 0 0 0 !important;
-        }
+
+    &-flight {
+      width: 70%;
+
+      &-vendor {
+        font-size: .75em;
+      }
+
+      &-location {
+        font-size: 1.25em;
+      }
     }
+  }
+
+  &-book-button {
+    margin: 5px 10%;
+    background-color: black;
+    border-radius: 30px;
+    padding: 10px;
+    width: 80%;
+    border: 0;
+    font-size: 1em;
+    color: white
+  }
+
 }
