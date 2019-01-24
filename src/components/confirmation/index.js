@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import "./style.scss"
-import getHistory from 'react-router-global-history'; 
 const qs = require('query-string');
 
  
@@ -25,7 +24,7 @@ class Confirmation extends Component {
             <p>Time of Flight: {listing.flightInfo.departureTime}</p>
             <button className="confirm-booking" onClick={() => {
             onConfirmClick(listingId, "karenk");
-                getHistory().push({
+                this.props.history.push({
                   pathname: "/reservations",
                   search: "?username=" + "karenk"
                 });
@@ -34,7 +33,7 @@ class Confirmation extends Component {
             </button>
 
             <button
-              onClick={() => getHistory().push("/listings")}
+              onClick={() => this.props.history.push("/listings")}
             >
               {" "}
               Back

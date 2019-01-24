@@ -8,9 +8,9 @@ import ReservationsScreen from "./components/reservationPage";
 import reservations from "./data/reservations.json";
 import data from "./data/data.json";
 import "./App.scss";
-import logo from "./logo.svg";
+import TopNavigation from "./components/topNavigation"
 
-import { ReactRouterGlobalHistory, getHistory } from 'react-router-global-history';
+
 
 class App extends Component {
     onConfirmClick = (listingId, username) => {
@@ -45,14 +45,7 @@ class App extends Component {
             <BrowserRouter>
 
                 <div className="app">
-                     <ReactRouterGlobalHistory />
-                    <div className="header">
-                        <button onClick={() => getHistory.push()}>
-                            {" "}
-                            Back
-                        </button>
-                        <img className="logo" src={logo} />
-                    </div>
+                    <TopNavigation />
                     <div className="screen">
                         <Route exact path="/" render={() => <Homepage />} />
                         <Route

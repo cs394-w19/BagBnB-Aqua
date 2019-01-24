@@ -19,7 +19,7 @@ class Homepage extends Component {
                 <div className="homepage-luggage">
                     <button
                         className="homepage-luggage-buttons"
-                        onClick={() => getHistory().push("/listings")}
+                        onClick={() => this.props.history.push("/listings")}
                     >
                         Buy Luggage Allowance
                     </button>
@@ -39,26 +39,26 @@ class Homepage extends Component {
         )
     }
 
-    render() {
-        return (
-            <div className="homepage">
-                <div className="homepage-luggage">
-                    <button className="homepage-luggage-buttons" onClick={() => getHistory().push("/listings")}>
-                        Buy Luggage Allowance
-                    </button>
-                    <button className="homepage-luggage-buttons">
-                        Sell Luggage Allowance
-                    </button>
-                </div>
-                <div className="homepage-reservation">
-                    <button className="homepage-reservation-buttons"
-                            onClick={() => getHistory().push("/reservations")}>
-                        See Reservations
-                    </button>
-                </div>
-            </div>
-        )
-    }
+//     render() {
+//         return (
+//             <div className="homepage">
+//                 <div className="homepage-luggage">
+//                     <button className="homepage-luggage-buttons" onClick={() => getHistory().push("/listings")}>
+//                         Buy Luggage Allowance
+//                     </button>
+//                     <button className="homepage-luggage-buttons">
+//                         Sell Luggage Allowance
+//                     </button>
+//                 </div>
+//                 <div className="homepage-reservation">
+//                     <button className="homepage-reservation-buttons"
+//                             onClick={() => getHistory().push("/reservations")}>
+//                         See Reservations
+//                     </button>
+//                 </div>
+//             </div>
+//         )
 }
+
 
 export default withRouter(Homepage);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import './style.scss'
-import getHistory from 'react-router-global-history';
 import ResultsShelf from '../resultsShelf'
 import SearchInfo from '../searchInfo'
 
@@ -41,7 +40,7 @@ class ResultsScreen extends Component {
     };
 
     onBookClick = (listingId) => {
-        getHistory().push({
+        this.props.history.push({
             pathname: "/confirmation",
             search: "?id=" + listingId
         });

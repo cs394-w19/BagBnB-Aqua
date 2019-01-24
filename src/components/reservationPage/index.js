@@ -51,7 +51,7 @@ class ReservationScreen extends Component {
                 </h2>
                 <div>{items}</div>
                 <button
-              onClick={() => getHistory().push("/listings")}
+              onClick={() => this.props.history.push("/listings")}
             >
               {" "}
               Back
