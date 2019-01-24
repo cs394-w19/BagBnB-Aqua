@@ -5,7 +5,9 @@
   "dependencies": {
     "browserify-fs": "^1.0.0",
     "classnames": "^2.2.6",
+    "firebase-admin": "^6.5.1",
     "fs": "0.0.1-security",
+    "http2": "^3.3.7",
     "json": "^9.0.6",
     "node-sass": "^4.11.0",
     "query-string": "^6.2.0",

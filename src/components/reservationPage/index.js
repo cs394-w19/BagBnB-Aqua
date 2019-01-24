@@ -31,7 +31,6 @@ class ReservationScreen extends Component {
                 />
             );
         });
-
         const user = usersData.users.find(u => u.username === username);
         if (filteredReservations.length === 0) {
             return (

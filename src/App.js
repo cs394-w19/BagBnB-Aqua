@@ -13,31 +13,56 @@ import TopNavigation from "./components/topNavigation"
 
 
 class App extends Component {
-    onConfirmClick = (listingId, username) => {
-        let listing = data.listings.find(l => l.id === listingId);
-        listing.booked = true;
-        listing.bookedBy = username;
-    };
 
     onConfirmClick = (listingId, username) => {
+
         let listing = data.listings.find(l => l.id === listingId);
-        listing.booked = true;
-        listing.bookedBy = username;
+        var admin = require("firebase-admin");
+
+        var serviceAccount = require("./bagdrop-eddd8-firebase-adminsdk-wenn2-9b200934dc.json");
+
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount),
+            databaseURL: "https://bagdrop-edd8.firebaseio.com"
+        });
+        var db = admin.firestore();
+
+        var docRef = db.collection("users").doc("0");
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+
+
+        const items = db.collection("reservations");
+        console.log(items);
         const reservation = {
             vendorUsername: listing.listedBy,
             buyerUsername: username,
             listingId: listingId
         };
-        console.log(reservation);
-        //   var JSON = require('json');
-        //    var reservations = JSON.parse(reservations);
-        reservations.reservations.push(reservation);
-        //     const json = JSON.stringify(reservations);
-        //   const fs = require('browserify-fs');
-        //     fs.writeFile('r.json', json, (err) => {
-        //       if (err) throw err;
-        //        console.log('The file has been saved!');
-        //   });
+        db
+            .collection("reservations")
+            .doc("0")
+            .set(reservation)
+            .then((res) => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        listing.booked = true;
+        listing.bookedBy = username;
+
+      //  console.log(reservation);
+     //   reservations.reservations.push(reservation);
     };
 
     render() {
