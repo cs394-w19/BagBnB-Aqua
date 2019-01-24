@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import "./style.scss"
-import getHistory from 'react-router-global-history'; 
+import getHistory from 'react-router-global-history';
+import userImage from "../../userpicture.svg";
 const qs = require('query-string');
 
  
