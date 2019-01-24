@@ -1,8 +1,76 @@
-.lazy-confirmation-styling {
-    h2 {
+.confirmation-screen {
+    background-color: #ffffffcc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+
+    .details{
+        width: inherit;
+        height: 120px;
+        border: 0;
+        margin: 10px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
         text-align: center;
-    }
-    p {
-        padding: 0 1em;
+
+        &-flight {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            &-number {
+                font-size: xx-large;
+            }
+        }
+
+        &-seller{
+            margin: 5px;
+            &-image{
+                width: 60px;
+            }
+            &-username{
+                font-size: small;
+            }
+        }
+
+        &-meeting {
+            margin: 10px;
+
+            &-time {
+                margin: 0 0 0 10px;
+                width: 80px;
+            }
+        }
+
+        &-booking {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: -10px;
+            margin-top: 20px;
+            background-color: #eeeeee80;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+            &-info{
+                width: 150px;
+                font-size: 20pt;
+                text-align: center;
+            }
+            &-button{
+                display: flex;
+                background-color: black;
+                color: white;
+                font-size: 14pt;
+                padding: 10px;
+                text-align: center;
+                border-radius: 10px;
+                width: 150px;
+                border: 0;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
     }
 }
