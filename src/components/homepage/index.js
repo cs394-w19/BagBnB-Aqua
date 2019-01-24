@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import "./style.scss";
+import getHistory from 'react-router-global-history';
 
 class Homepage extends Component {
 
     onReserveClick(username) {
-        this.props.history.push(
+        getHistory().push(
             {
                 pathname: "/reservations",
                 search: "?username=" + username
@@ -18,7 +19,7 @@ class Homepage extends Component {
                 <div className="homepage-luggage">
                     <button
                         className="homepage-luggage-buttons"
-                        onClick={() => this.props.history.push("/listings")}
+                        onClick={() => getHistory().push("/listings")}
                     >
                         Buy Luggage Allowance
                     </button>
@@ -29,7 +30,7 @@ class Homepage extends Component {
                 </div>
                 <button
                     className="homepage-reservation-buttons"
-                    //onClick={() => this.props.history.push("/reservations")}
+                    //onClick={() => getHistory().push("/reservations")}
                     onClick={() => this.onReserveClick("karenk")}
                 >
                     See Reservations
@@ -42,7 +43,7 @@ class Homepage extends Component {
         return (
             <div className="homepage">
                 <div className="homepage-luggage">
-                    <button className="homepage-luggage-buttons" onClick={() => this.props.history.push("/listings")}>
+                    <button className="homepage-luggage-buttons" onClick={() => getHistory().push("/listings")}>
                         Buy Luggage Allowance
                     </button>
                     <button className="homepage-luggage-buttons">
@@ -51,7 +52,7 @@ class Homepage extends Component {
                 </div>
                 <div className="homepage-reservation">
                     <button className="homepage-reservation-buttons"
-                            onClick={() => this.props.history.push("/reservations")}>
+                            onClick={() => getHistory().push("/reservations")}>
                         See Reservations
                     </button>
                 </div>
