@@ -1,3 +1,5 @@
+install: gem install rake
+
 deploy:
   provider: firebase
   token:
