@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './style.scss';
-import getHistory from 'react-router-global-history';
 import ShelfItem from '../shelfItem';
 
 import flights from '../../data/flights.json';

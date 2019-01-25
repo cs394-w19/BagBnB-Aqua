@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import withRouter from "react-router-dom";
 import "./style.scss";
 
 
@@ -11,8 +11,8 @@ class TopNavigation extends Component {
 	render() {
 		return (
 			<div className="header">
-				<button className="TopNavigationButton" onClick={() => this.props.history.goBack()}><img className="TopNavigationButton-image" src={back} /></button>
-				<img className="logo" src={logo} />
+				<button className="TopNavigationButton" onClick={() => this.props.history.goBack()}><img className="TopNavigationButton-image" src={back} alt="back"/></button>
+				<img className="logo" src={logo} alt="Bagdrop"/>
 			</div>
 		);
 	}

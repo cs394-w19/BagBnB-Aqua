@@ -4,7 +4,6 @@ import reservationData from "../../data/reservations.json";
 import usersData from "../../data/user.json";
 import ReservationItem from "../reservationItem";
 import "./style.scss";
-import getHistory from 'react-router-global-history';
 const qs = require("query-string");
 
 class ReservationScreen extends Component {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import "./style.scss"
-import getHistory from 'react-router-global-history';
+import "./style.scss";
 import userImage from "../../userpicture.svg";
 const qs = require('query-string');
 
@@ -32,7 +31,7 @@ class Confirmation extends Component {
                     </div>
                 </span>
                     <span className="details-seller">
-                        <img className="details-seller-image" src={userImage} />
+                        <img className="details-seller-image" src={userImage} alt={listing.listedBy}/>
                         <p className="details-seller-username">{listing.listedBy}</p>
                     </span>
                 </div>
@@ -51,7 +50,7 @@ class Confirmation extends Component {
                     onConfirmClick(listingId, "karenk");
                     this.props.history.push({
                         pathname: "/reservations",
-                        search: "?username=" + "karenk"
+                        search: "?username=karenk"
                     });
                 }}>
                     Confirm Booking
