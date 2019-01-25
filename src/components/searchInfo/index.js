@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import "./style.scss";
 
+const classname = require('classnames');
+
 class SearchInfo extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            searchUsingFlightNumber: true
+        };
         this.handleFromChange = this.handleFromChange.bind(this);
         this.handleToChange = this.handleToChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -28,18 +33,44 @@ class SearchInfo extends Component {
 
     render() {
         const searchParams = this.props.searchParams;
+        const flightNumberClassName = classname(
+            "search-flight-tab-button",
+            {"search-flight-tab-button-active": this.state.searchUsingFlightNumber})
+        const locationClassName = classname(
+            "search-flight-tab-button",
+            {"search-flight-tab-button-active": !this.state.searchUsingFlightNumber})
         return (
             <div>
-                <form className="flight-search">
-                    <input placeholder="Departure (i.e., ORD)" className="flight-search-input flight-search-input--half"
-                           type="text" value={searchParams.from} onChange={this.handleFromChange}/>
-                    <input placeholder="Arrival (i.e., LGA)" className="flight-search-input flight-search-input--half"
-                           type="text" value={searchParams.to} onChange={this.handleToChange}/>
-                    <input className="flight-search-input flight-search-input--twothird" type="datetime-local"
-                           value={searchParams.date} onChange={this.handleDateChange}/>
-                    <input placeholder="Flight Number (i.e VA314)"
-                           className="flight-search-input flight-search-input--third" type="text"
-                           value={searchParams.flightNumber} onChange={this.handleFlightNumberChange}/>
+                <form className="search">
+                    <div className="search-flight">
+                        <div className="search-flight-tab">
+                            <div className={flightNumberClassName}
+                                 onClick={() => this.setState({searchUsingFlightNumber: true})}>Flight No.
+                            </div>
+                            <div className={locationClassName}
+                                 onClick={() => this.setState({searchUsingFlightNumber: false})}>Location
+                            </div>
+                        </div>
+                        {!this.state.searchUsingFlightNumber && <div>
+                            <input placeholder="Departure (i.e., ORD)"
+                                   className="search-flight-input flight-search-input"
+                                   type="text" value={searchParams.from} onChange={this.handleFromChange}/>
+                            <input placeholder="Arrival (i.e., LGA)"
+                                   className="search-flight-input flight-search-input"
+                                   type="text" value={searchParams.to} onChange={this.handleToChange}/>
+                        </div>
+                        }
+                        {this.state.searchUsingFlightNumber && <input placeholder="Flight Number (i.e VA314)"
+                                                                      className="search-flight-input"
+                                                                      type="text"
+                                                                      value={searchParams.flightNumber}
+                                                                      onChange={this.handleFlightNumberChange}/>}
+                    </div>
+                    <div className="search-date">
+                        <div>Date:</div>
+                        <input className="search-date-input" type="date"
+                               value={searchParams.date} onChange={this.handleDateChange}/>
+                    </div>
                 </form>
             </div>
         )
