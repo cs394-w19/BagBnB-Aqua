@@ -1,4 +1,6 @@
-install: gem install rake
+language: node_js
+node_js:
+  - "node"
 
 deploy:
   provider: firebase
