@@ -4,7 +4,7 @@ import "./style.scss"
 class ReservationItem extends Component {
 
     render() {
-        const {reservation, listing, user} = this.props;
+        const { listing, user} = this.props;
         const flightInfo = listing.flightInfo;
         return <div className="lazy-reservation-item-styling">
             <span>
