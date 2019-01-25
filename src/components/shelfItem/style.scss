@@ -5,37 +5,62 @@
   margin: 20px 10px;
   padding: 10px;
 
+  &-carrier {
+    font-size: small;
+    float: top;
+  }
+
   &-info {
     display: flex;
-
-    &-baggage {
-      width: 30%;
-      font-size: 1.5em;
-      text-align: right;
-    }
+    justify-content: space-between;
+    margin-top: -5px;
 
     &-flight {
-      width: 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+      border-right: 1px solid #007275;
 
-      &-vendor {
-        font-size: .75em;
+      &-number{
+        font-size: xx-large;
       }
 
       &-location {
-        font-size: 1.25em;
+        font-size: large;
       }
+      &-time {
+        font-size: small;
+      }
+    }
+
+    &-baggage {
+      display: flex;
+      flex-direction: column;
+      margin-top: -5px;
+      width: 150px;
+
+      &-details{
+        margin: 0 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        font-size: x-large;
+      }
+
+      &-button {
+        margin: 5px 10%;
+        background-color: black;
+        border-radius: 30px;
+        padding: 10px;
+        width: 80%;
+        border: 0;
+        font-size: x-large;
+        color: white
+      }
+
     }
   }
 
-  &-book-button {
-    margin: 5px 10%;
-    background-color: black;
-    border-radius: 30px;
-    padding: 10px;
-    width: 80%;
-    border: 0;
-    font-size: 1em;
-    color: white
-  }
 
 }
