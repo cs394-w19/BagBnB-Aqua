@@ -9,25 +9,26 @@ import reservations from "./data/reservations.json";
 import data from "./data/data.json";
 import "./App.scss";
 import TopNavigation from "./components/topNavigation"
-import firebase from 'firebase';
-import 'firebase/firestore';
+import firestore from './components/firestore.js';
 
 class App extends Component {
 
     onConfirmClick = (listingId, username) => {
 
         let listing = data.listings.find(l => l.id === listingId);
-
+   //     var firebase = require('firebase/app');
+     //   require('firebase/firestore');
+        /*
      //   var serviceAccount = require("./bagdrop-eddd8-firebase-adminsdk-wenn2-9b200934dc.json");
         var config = {
             apiKey: "AIzaSyACPZsC5-LVZ5qTrZK8QnsEDDwbC4sfgQI",
             authDomain: "bagdrop-eddd8.firebaseapp.com",
             databaseURL: "https://bagdrop-eddd8.firebaseio.com",
-            projectId: "bagdrop-eddd8"
         };
         firebase.initializeApp(config);
-        console.log(firebase);
-        var db = firebase.firestore();
+        console.log(typeof firebase);*/
+        console.log(firestore);
+        var db = firestore();
 
         const items = db.collection("reservations");
         console.log(items);
@@ -36,24 +37,6 @@ class App extends Component {
             buyerUsername: username,
             listingId: listingId
         };
-        if(typeof db === 'undefined'){
-            console.log("it's db")
-        }
-        else{
-            console.log(db);
-        }
-        if(typeof db.collection("reservations") === 'undefined'){
-            console.log("it's reservations")
-        }
-        else{
-            console.log(db.collection("reservations"));
-        }
-        if(typeof db.collection("reservations").doc("0") === 'undefined'){
-            console.log("it's doc 0")
-        }
-        else{
-            console.log(db.collection("reservations").doc("0"));
-        }
         db.collection("reservations")
             .doc("0")
             .set(reservation)
@@ -65,9 +48,6 @@ class App extends Component {
             });
         listing.booked = true;
         listing.bookedBy = username;
-
-      //  console.log(reservation);
-     //   reservations.reservations.push(reservation);
     };
 
     render() {
