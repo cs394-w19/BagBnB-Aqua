@@ -8,6 +8,7 @@ import Homepage from "./components/homepage";
 import ReservationsScreen from "./components/reservationPage";
 import TopNavigation from "./components/topNavigation"
 import ResultsScreen from "./components/resultsScreen";
+import SellLuggageAllowance from "./components/sellLuggageAllowance";
 import Confirmation from "./components/confirmation";
 //data
 import data from "./data/data.json";
@@ -41,10 +42,15 @@ class App extends Component {
                             )}
                         />
                         <Route
+                            path="/sellLuggageAllowance"
+                            render={() => (
+                                <SellLuggageAllowance listings={data.listings} />
+                            )}
+                        />
+                        <Route
                             path="/confirmation"
                             render={() => (
-                                <Confirmation
-                                    listings={data.listings}
+                                <Confirmation listings={data.listings}
                                     onConfirmClick={this.onConfirmClick}
                                 />
                             )}
