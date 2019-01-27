@@ -12,7 +12,6 @@ class ShelfItem extends Component {
                 <div className="shelf-item-carrier">{listing.vendorName}</div>
 
                 <div className="shelf-item-info">
-
                     <div className="shelf-item-info-flight">
                         <div className="shelf-item-info-flight-number">{flightInfo.flightNumber}</div>
                         <div className="shelf-item-info-flight-location">
@@ -25,7 +24,6 @@ class ShelfItem extends Component {
                             <span>{flightInfo.arrivalTime}</span>
                         </div>
                     </div>
-
                     <div className="shelf-item-info-baggage">
                         <div className="shelf-item-info-baggage-details">
                             <span> ${listing.price}</span>

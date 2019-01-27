@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+
+import "./style.scss";
+
+import ReservationItem from "../reservationItem";
+
 import reservationData from "../../data/reservations.json";
 import usersData from "../../data/user.json";
-import ReservationItem from "../reservationItem";
-import "./style.scss";
+
 const qs = require("query-string");
 
 class ReservationScreen extends Component {
@@ -20,7 +24,7 @@ class ReservationScreen extends Component {
         const items = filteredReservations.map(r => {
             const listing = listings.find(l => l.id === r.listingId);
             const vendorUser = usersData.users.find(
-                u => u.username === r.vendorUsername
+                u => u.username === listing.listedBy
             );
             return (
                 <ReservationItem
@@ -31,12 +35,11 @@ class ReservationScreen extends Component {
             );
         });
 
-        const user = usersData.users.find(u => u.username === username);
         if (filteredReservations.length === 0) {
             return (
                 <div>
                     <h2>
-                        Reservations for {user.firstName} {user.lastName}:
+                        Your Reservations:
                     </h2>
                     <h2>No Reservations!</h2>
                 </div>
@@ -46,15 +49,9 @@ class ReservationScreen extends Component {
         return (
             <div className="lazy-reservation-styling">
                 <h2>
-                    Reservations for {user.firstName} {user.lastName}:
+                    Your Reservations:
                 </h2>
                 <div>{items}</div>
-                <button
-              onClick={() => this.props.history.push("/listings")}
-            >
-              {" "}
-              Back
-            </button>
             </div>
         );
     }
