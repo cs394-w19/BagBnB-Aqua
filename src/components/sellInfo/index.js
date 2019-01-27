@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "./style.scss";
 
-const classname = require('classnames');
+//const classname = require('classnames');
 
 class SellInfo extends Component {
     constructor(props) {
@@ -29,13 +29,13 @@ class SellInfo extends Component {
     }
 
     render() {
-        const { searchUsingFlightNumber, searchParams, onFlightClick, onLocationClick }= this.props;
-        const flightNumberClassName = classname(
-            "search-flight-tab-button",
-            {"search-flight-tab-button-active": searchUsingFlightNumber})
-        const locationClassName = classname(
-            "search-flight-tab-button",
-            {"search-flight-tab-button-active": !searchUsingFlightNumber})
+        const { searchUsingFlightNumber, searchParams}= this.props;
+//        const flightNumberClassName = classname(
+//            "search-flight-tab-button",
+//            {"search-flight-tab-button-active": searchUsingFlightNumber})
+//        const locationClassName = classname(
+//            "search-flight-tab-button",
+//            {"search-flight-tab-button-active": !searchUsingFlightNumber})
         return (
             <div className="search">
                 <form className="search-input">
