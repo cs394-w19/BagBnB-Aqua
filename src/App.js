@@ -9,37 +9,25 @@ import reservations from "./data/reservations.json";
 import data from "./data/data.json";
 import "./App.scss";
 import TopNavigation from "./components/topNavigation"
-
-
+import firebase from 'firebase';
+import 'firebase/firestore';
 
 class App extends Component {
 
     onConfirmClick = (listingId, username) => {
 
         let listing = data.listings.find(l => l.id === listingId);
-        var admin = require("firebase-admin");
 
-        var serviceAccount = require("./bagdrop-eddd8-firebase-adminsdk-wenn2-9b200934dc.json");
-
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount),
-            databaseURL: "https://bagdrop-edd8.firebaseio.com"
-        });
-        var db = admin.firestore();
-
-        var docRef = db.collection("users").doc("0");
-
-        docRef.get().then(function(doc) {
-            if (doc.exists) {
-                console.log("Document data:", doc.data());
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
-        }).catch(function(error) {
-            console.log("Error getting document:", error);
-        });
-
+     //   var serviceAccount = require("./bagdrop-eddd8-firebase-adminsdk-wenn2-9b200934dc.json");
+        var config = {
+            apiKey: "AIzaSyACPZsC5-LVZ5qTrZK8QnsEDDwbC4sfgQI",
+            authDomain: "bagdrop-eddd8.firebaseapp.com",
+            databaseURL: "https://bagdrop-eddd8.firebaseio.com",
+            projectId: "bagdrop-eddd8"
+        };
+        firebase.initializeApp(config);
+        console.log(firebase);
+        var db = firebase.firestore();
 
         const items = db.collection("reservations");
         console.log(items);
@@ -48,8 +36,25 @@ class App extends Component {
             buyerUsername: username,
             listingId: listingId
         };
-        db
-            .collection("reservations")
+        if(typeof db === 'undefined'){
+            console.log("it's db")
+        }
+        else{
+            console.log(db);
+        }
+        if(typeof db.collection("reservations") === 'undefined'){
+            console.log("it's reservations")
+        }
+        else{
+            console.log(db.collection("reservations"));
+        }
+        if(typeof db.collection("reservations").doc("0") === 'undefined'){
+            console.log("it's doc 0")
+        }
+        else{
+            console.log(db.collection("reservations").doc("0"));
+        }
+        db.collection("reservations")
             .doc("0")
             .set(reservation)
             .then((res) => {
