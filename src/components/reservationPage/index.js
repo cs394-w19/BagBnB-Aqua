@@ -18,11 +18,12 @@ class ReservationScreen extends Component {
     }
 
     render() {
-        const listings = this.props.listings;
+        const {flights, listings} = this.props;
         const username = qs.parse(this.props.location.search).username;
         const filteredReservations = this.retrieveReservations(username);
         const items = filteredReservations.map(r => {
             const listing = listings.find(l => l.id === r.listingId);
+            const flight = flights.find((f)=> f.flightNumber === listing.flightInfo.flightNumber)
             const vendorUser = usersData.users.find(
                 u => u.username === listing.listedBy
             );
@@ -31,6 +32,7 @@ class ReservationScreen extends Component {
                     reservation={r}
                     listing={listing}
                     user={vendorUser}
+                    flight={flight}
                 />
             );
         });

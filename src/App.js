@@ -47,13 +47,14 @@ class App extends Component {
                                 <Confirmation
                                     listings={data.listings}
                                     onConfirmClick={this.onConfirmClick}
+                                    flights={flightData.flights}
                                 />
                             )}
                         />
                         <Route
                             path="/reservations"
                             render={() => (
-                                <ReservationsScreen listings={data.listings} />
+                                <ReservationsScreen listings={data.listings} flights={flightData.flights}/>
                             )}
                         />
                     </div>

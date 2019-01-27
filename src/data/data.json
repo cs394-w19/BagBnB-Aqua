@@ -3,7 +3,7 @@
     {
       "flightInfo": {
         "date": "2019-01-27",
-        "flightNumber": "UT 12"
+        "flightNumber": "UT12"
       },
       "id": "00001",
       "vendorName": "United",
@@ -16,7 +16,7 @@
     {
       "flightInfo": {
         "date": "2019-01-27",
-        "flightNumber": "SW 20"
+        "flightNumber": "SW20"
       },
       "id": "00002",
       "vendorName": "Southwest",
@@ -29,7 +29,7 @@
     {
       "flightInfo": {
         "date": "2019-01-27",
-        "flightNumber": "AA 32"
+        "flightNumber": "AA32"
       },
       "id": "00003",
       "vendorName": "American Airlines",
@@ -42,7 +42,7 @@
     {
       "flightInfo": {
         "date": "2019-01-27",
-        "flightNumber": "SW 28"
+        "flightNumber": "SW28"
       },
       "id": "00004",
       "vendorName": "Southwest",
@@ -50,6 +50,45 @@
       "weight": 30,
       "booked": false,
       "listedBy": "berthaq",
+      "bookedBy": ""
+    },
+    {
+      "flightInfo": {
+        "date": "2019-01-27",
+        "flightNumber": "AA25"
+      },
+      "id": "00005",
+      "vendorName": "American Airlines",
+      "price": 20,
+      "weight": 30,
+      "booked": false,
+      "listedBy": "berthaq",
+      "bookedBy": ""
+    },
+    {
+      "flightInfo": {
+        "date": "2019-01-27",
+        "flightNumber": "AA25"
+      },
+      "id": "00006",
+      "vendorName": "American Airlines",
+      "price": 65,
+      "weight": 50,
+      "booked": false,
+      "listedBy": "garionng",
+      "bookedBy": ""
+    },
+    {
+      "flightInfo": {
+        "date": "2019-01-27",
+        "flightNumber": "AA25"
+      },
+      "id": "00007",
+      "vendorName": "American Airlines",
+      "price": 70,
+      "weight": 50,
+      "booked": false,
+      "listedBy": "justinc",
       "bookedBy": ""
     }
   ]
