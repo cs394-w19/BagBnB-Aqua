@@ -12,6 +12,7 @@ import Confirmation from "./components/confirmation";
 //data
 import data from "./data/data.json";
 import reservationData from "./data/reservations.json";
+import flightData from "./data/flights.json";
 
 
 class App extends Component {
@@ -37,7 +38,7 @@ class App extends Component {
                         <Route
                             path="/listings"
                             render={() => (
-                                <ResultsScreen listings={data.listings} />
+                                <ResultsScreen listings={data.listings} flights={flightData.flights}/>
                             )}
                         />
                         <Route

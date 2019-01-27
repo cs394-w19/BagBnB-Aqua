@@ -5,7 +5,7 @@ import "./style.scss";
 class ShelfItem extends Component {
 
     render() {
-        const listing = this.props.listing;
+        const { listing, flight } = this.props;
         const flightInfo = listing.flightInfo;
         return (
             <div className="shelf-item">
@@ -13,15 +13,15 @@ class ShelfItem extends Component {
 
                 <div className="shelf-item-info">
                     <div className="shelf-item-info-flight">
-                        <div className="shelf-item-info-flight-number">{flightInfo.flightNumber}</div>
+                        <div className="shelf-item-info-flight-number">{flight.flightNumber}</div>
                         <div className="shelf-item-info-flight-location">
-                            <span>{flightInfo.departureLoc}</span> &#8594;
-                            <span> {flightInfo.arrivalLoc}</span>
+                            <span>{flight.departureLoc}</span> &#8594;
+                            <span> {flight.arrivalLoc}</span>
                         </div>
                         <div className="shelf-item-info-flight-time">
-                            <span>{flightInfo.departureTime}</span>
+                            <span>{flight.departureTime}</span>
                             &nbsp;&mdash;&nbsp;
-                            <span>{flightInfo.arrivalTime}</span>
+                            <span>{flight.arrivalTime}</span>
                         </div>
                     </div>
                     <div className="shelf-item-info-baggage">

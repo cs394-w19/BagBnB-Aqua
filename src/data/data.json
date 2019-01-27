@@ -2,11 +2,7 @@
   "listings": [
     {
       "flightInfo": {
-        "departureLoc": "ORD",
-        "arrivalLoc": "LGA",
-        "departureTime": "13:00",
-        "arrivalTime": "20:00",
-        "date": "2018-01-14",
+        "date": "2019-01-27",
         "flightNumber": "UT 12"
       },
       "id": "00001",
@@ -19,15 +15,11 @@
     },
     {
       "flightInfo": {
-        "departureLoc": "OHR",
-        "arrivalLoc": "JFK",
-        "departureTime": "10:00",
-        "arrivalTime": "12:50",
-        "date": "2018-01-14",
+        "date": "2019-01-27",
         "flightNumber": "SW 20"
       },
       "id": "00002",
-      "vendorName": "Delta",
+      "vendorName": "Southwest",
       "price": 20,
       "weight": 3,
       "booked": false,
@@ -36,11 +28,7 @@
     },
     {
       "flightInfo": {
-        "departureLoc": "LAX",
-        "arrivalLoc": "OHL",
-        "departureTime": "18:00",
-        "arrivalTime": "22:00",
-        "date": "2018-01-14",
+        "date": "2019-01-27",
         "flightNumber": "AA 32"
       },
       "id": "00003",
@@ -53,11 +41,7 @@
     },
     {
       "flightInfo": {
-        "departureLoc": "HTH",
-        "arrivalLoc": "JFK",
-        "departureTime": "06:00",
-        "arrivalTime": "10:50",
-        "date": "2018-01-14",
+        "date": "2019-01-27",
         "flightNumber": "SW 28"
       },
       "id": "00004",
