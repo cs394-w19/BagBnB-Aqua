@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
+//styles
 import "./style.scss";
+//images
 import userImage from "../../userpicture.svg";
+//node dependencies
 const qs = require('query-string');
 
 class Confirmation extends Component {
@@ -10,7 +13,6 @@ class Confirmation extends Component {
         const {listings, onConfirmClick} = this.props;
         const listingId = qs.parse(this.props.location.search).id;
         const listing = listings.find((l) => l.id === listingId);
-
         const timeArray = listing.flightInfo.departureTime.split(':');
         let hour = parseInt(timeArray[0]) - 2
         if (hour < 0) {

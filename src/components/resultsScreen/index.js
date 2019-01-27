@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import './style.scss'
+//components
 import ResultsShelf from '../resultsShelf'
 import SearchInfo from '../searchInfo'
 
@@ -13,10 +14,23 @@ class ResultsScreen extends Component {
                 from: '',
                 date: new Date().toISOString(),
                 flightNumber: ''
-            }
+            },
+            searchUsingFlightNumber: true
         };
         this.onBookClick = this.onBookClick.bind(this);
     }
+
+    onFlightClick = () => {
+        const state = this.state;
+        state.searchUsingFlightNumber = true;
+        this.setState(state);
+    };
+
+    onLocationClick = () => {
+        const state = this.state;
+        state.searchUsingFlightNumber = false;
+        this.setState(state);
+    };
 
     onFromChange = (from) => {
         const state = this.state;
@@ -54,11 +68,17 @@ class ResultsScreen extends Component {
                     onFromChange={this.onFromChange}
                     onToChange={this.onToChange}
                     onDateChange={this.onDateChange}
-                    onFlightNumberChange={this.onFlightNumberChange}/>
+                    onFlightNumberChange={this.onFlightNumberChange}
+                    onFlightClick={this.onFlightClick}
+                    onLocationClick={this.onLocationClick}
+                    searchUsingFlightNumber={this.state.searchUsingFlightNumber}
+                />
                 <ResultsShelf
                     listings={this.props.listings}
                     searchParams={this.state.searchParams}
-                    onBookClick={this.onBookClick}/>
+                    onBookClick={this.onBookClick}
+                    searchUsingFlightNumber={this.state.searchUsingFlightNumber}
+                />
             </div>
         )
     }

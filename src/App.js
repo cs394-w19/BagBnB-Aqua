@@ -1,16 +1,21 @@
+//Dependencies
 import React, { Component } from "react";
-import ResultsScreen from "./components/resultsScreen";
-import Confirmation from "./components/confirmation";
 import { BrowserRouter, Route } from "react-router-dom";
+//styles
+import "./App.scss";
+//components
 import Homepage from "./components/homepage";
 import ReservationsScreen from "./components/reservationPage";
-import data from "./data/data.json";
-import "./App.scss";
 import TopNavigation from "./components/topNavigation"
+import ResultsScreen from "./components/resultsScreen";
+import Confirmation from "./components/confirmation";
+//data
+import data from "./data/data.json";
 
 
 
 class App extends Component {
+
     onConfirmClick = (listingId, username) => {
         let listing = data.listings.find(l => l.id === listingId);
         listing.booked = true;
