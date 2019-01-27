@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './style.scss';
 import ShelfItem from '../shelfItem';
 
-// import flights from '../../data/flights.json';
 
 class ResultsShelf extends Component {
 

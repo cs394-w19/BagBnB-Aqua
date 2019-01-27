@@ -35,23 +35,13 @@ class ReservationScreen extends Component {
             );
         });
 
-        if (filteredReservations.length === 0) {
-            return (
-                <div>
-                    <h2>
-                        Your Reservations:
-                    </h2>
-                    <h2>No Reservations!</h2>
-                </div>
-            );
-        }
-
         return (
             <div className="lazy-reservation-styling">
                 <h2>
                     Your Reservations:
                 </h2>
                 <div>{items}</div>
+                {filteredReservations.length === 0 && <h2>No Reservations!</h2>}
             </div>
         );
     }

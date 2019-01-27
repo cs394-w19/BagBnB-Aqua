@@ -8,9 +8,9 @@ import userImage from "../../userpicture.svg";
 const qs = require('query-string');
 
 class Confirmation extends Component {
-
-    render() {
-        const {listings, onConfirmClick} = this.props;
+    constructor(props) {
+        super(props);
+        const listings = this.props.listings;
         const listingId = qs.parse(this.props.location.search).id;
         const listing = listings.find((l) => l.id === listingId);
         const timeArray = listing.flightInfo.departureTime.split(':');
@@ -18,7 +18,19 @@ class Confirmation extends Component {
         if (hour < 0) {
             hour += 24;
         }
-        const suggestedTime = hour + ":" + timeArray[1]
+        let suggestedTime = hour + ":" + timeArray[1]
+        if (suggestedTime.length < 5){
+            suggestedTime = "0" + suggestedTime
+        }
+        this.state = {
+            meetingTime: suggestedTime
+        };
+    }
+
+    render() {
+        const {listings, onConfirmClick} = this.props;
+        const listingId = qs.parse(this.props.location.search).id;
+        const listing = listings.find((l) => l.id === listingId);
         return (
             <div className="confirmation-screen">
                 <div className="details">
@@ -40,7 +52,11 @@ class Confirmation extends Component {
                 <div className="details-meeting">
                 <p>Meeting Place: {listing.flightInfo.departureLoc} Terminal 5</p>
                 <p>Meeting Time:
-                    <input className="details-meeting-time" type="time" defaultValue={suggestedTime}/>
+                    <input
+                        className="details-meeting-time"
+                        type="time"
+                        value={this.state.meetingTime}
+                        onChange={(e)=>this.setState({ meetingTime: e.target.value })}/>
                 </p>
                 </div>
                 <div className="details-booking">
@@ -49,7 +65,7 @@ class Confirmation extends Component {
                     <div>{listing.weight} lbs</div>
                 </span>
                 <button className="details-booking-button" onClick={() => {
-                    onConfirmClick(listingId, "karenk");
+                    onConfirmClick(listingId, "karenk", this.state.meetingTime);
                     this.props.history.push({
                         pathname: "/reservations",
                         search: "?username=karenk"

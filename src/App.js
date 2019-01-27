@@ -11,15 +11,19 @@ import ResultsScreen from "./components/resultsScreen";
 import Confirmation from "./components/confirmation";
 //data
 import data from "./data/data.json";
-
+import reservationData from "./data/reservations.json";
 
 
 class App extends Component {
 
-    onConfirmClick = (listingId, username) => {
+    onConfirmClick = (listingId, username, meetingTime) => {
         let listing = data.listings.find(l => l.id === listingId);
         listing.booked = true;
-        listing.bookedBy = username;
+        reservationData.reservations.push({
+            "buyerUsername": username,
+            "listingId":listingId,
+            "meetingTime": meetingTime
+        })
     };
 
     render() {
