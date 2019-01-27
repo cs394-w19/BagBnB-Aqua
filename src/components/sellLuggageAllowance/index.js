@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import './style.scss'
 //components
-import ResultsShelf from '../resultsShelf'
 import SellInfo from '../sellInfo'
 
 class SellLuggageAllowance extends Component {
@@ -63,6 +62,7 @@ class SellLuggageAllowance extends Component {
     render() {
         return (
             <div className='results-screen'>
+            <div className="header-styling"><h1>Enter Luggage Allowance Details:</h1></div>
                 <SellInfo
                     searchParams={this.state.searchParams}
                     onFromChange={this.onFromChange}
@@ -71,12 +71,6 @@ class SellLuggageAllowance extends Component {
                     onFlightNumberChange={this.onFlightNumberChange}
                     onFlightClick={this.onFlightClick}
                     onLocationClick={this.onLocationClick}
-                    searchUsingFlightNumber={this.state.searchUsingFlightNumber}
-                />
-                <ResultsShelf
-                    listings={this.props.listings}
-                    searchParams={this.state.searchParams}
-                    onBookClick={this.onBookClick}
                     searchUsingFlightNumber={this.state.searchUsingFlightNumber}
                 />
             </div>
