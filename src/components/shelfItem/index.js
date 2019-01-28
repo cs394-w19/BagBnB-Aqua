@@ -6,7 +6,6 @@ class ShelfItem extends Component {
 
     render() {
         const { listing, flight } = this.props;
-        const flightInfo = listing.flightInfo;
         return (
             <div className="shelf-item">
                 <div className="shelf-item-carrier">{listing.vendorName}</div>
