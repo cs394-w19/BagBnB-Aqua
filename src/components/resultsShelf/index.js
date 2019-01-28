@@ -20,7 +20,6 @@ class ResultsShelf extends Component {
             const filteredFlights = flights.filter((f) =>
                 (this.matchStrings(searchParams.from, f.departureLoc) &&
                     this.matchStrings(searchParams.to, f.arrivalLoc)));
-            console.log(filteredFlights)
             filteredFlights.forEach((f) =>
                 filteredListings.push(...listings.filter((l) => (l.flightInfo.flightNumber === f.flightNumber))))
         }

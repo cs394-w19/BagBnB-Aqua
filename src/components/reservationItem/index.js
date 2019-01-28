@@ -13,6 +13,7 @@ class ReservationItem extends Component {
             <div className="reservation">
                 <div className="meeting-details">
                     <div className="meeting-details-dt">
+                        Meeting Details:
                         <div className="meeting-details-dt-time">{reservation.meetingTime}</div>
                         <div className="meeting-details-dt-date">{flightInfo.date}</div>
                     </div>

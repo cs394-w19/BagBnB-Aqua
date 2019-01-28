@@ -1,6 +1,6 @@
 //Dependencies
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import React, {Component} from "react";
+import {BrowserRouter, Route} from "react-router-dom";
 //styles
 import "./App.scss";
 //components
@@ -9,22 +9,48 @@ import ReservationsScreen from "./components/reservationPage";
 import TopNavigation from "./components/topNavigation"
 import ResultsScreen from "./components/resultsScreen";
 import Confirmation from "./components/confirmation";
+import firestore from "./firestore";
 //data
-import data from "./data/data.json";
-import reservationData from "./data/reservations.json";
 import flightData from "./data/flights.json";
 
-
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listings: []
+        };
+        this.db = firestore();
+    }
+
+    componentDidMount() {
+        let listings = [];
+        this.db.collection("listings").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                listings.push({
+                    id: doc.id,
+                    ...doc.data()
+                })
+            });
+            this.setState({listings: listings})
+        })
+    }
 
     onConfirmClick = (listingId, username, meetingTime) => {
-        let listing = data.listings.find(l => l.id === listingId);
+        let listing = this.state.listings.find(l => l.id === listingId);
         listing.booked = true;
-        reservationData.reservations.push({
+        let reservation = {
             "buyerUsername": username,
-            "listingId":listingId,
             "meetingTime": meetingTime
-        })
+        };
+        this.db.collection("reservations")
+            .doc(listingId)
+            .set(reservation)
+            .then(res => {
+                console.log("Document successfully written!")
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
     };
 
     render() {
@@ -32,20 +58,20 @@ class App extends Component {
             <BrowserRouter>
 
                 <div className="app">
-                    <TopNavigation />
+                    <TopNavigation/>
                     <div className="screen">
-                        <Route exact path="/" render={() => <Homepage />} />
+                        <Route exact path="/" render={() => <Homepage/>}/>
                         <Route
                             path="/listings"
                             render={() => (
-                                <ResultsScreen listings={data.listings} flights={flightData.flights}/>
+                                <ResultsScreen listings={this.state.listings} flights={flightData.flights}/>
                             )}
                         />
                         <Route
                             path="/confirmation"
                             render={() => (
                                 <Confirmation
-                                    listings={data.listings}
+                                    listings={this.state.listings}
                                     onConfirmClick={this.onConfirmClick}
                                     flights={flightData.flights}
                                 />
@@ -54,7 +80,7 @@ class App extends Component {
                         <Route
                             path="/reservations"
                             render={() => (
-                                <ReservationsScreen listings={data.listings} flights={flightData.flights}/>
+                                <ReservationsScreen listings={this.state.listings} flights={flightData.flights} db={this.db}/>
                             )}
                         />
                     </div>
