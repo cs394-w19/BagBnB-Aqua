@@ -41,6 +41,13 @@
       "firstName": "David",
       "lastName": "Romney",
       "phoneNumber": "552-134-2444"
+    },
+    {
+      "username": "justinc",
+      "rating": 4.3,
+      "firstName": "Justin",
+      "lastName": "Cameron",
+      "phoneNumber": "552-134-2444"
     }
   ]
 }
