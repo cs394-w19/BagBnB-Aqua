@@ -9,7 +9,7 @@ class ShelfItem extends Component {
         return (
             <div className="shelf-item">
                 <div className="shelf-item-carrier">{listing.vendorName}</div>
-
+                
                 <div className="shelf-item-info">
                     <div className="shelf-item-info-flight">
                         <div className="shelf-item-info-flight-number">{flight.flightNumber}</div>
