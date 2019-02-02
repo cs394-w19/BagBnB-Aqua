@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './style.scss';
 import ShelfItem from '../shelfItem';
 
@@ -10,20 +10,26 @@ class ResultsShelf extends Component {
     }
 
     render() {
-        const { listings, searchParams, onBookClick, searchUsingFlightNumber } = this.props;
-        let filteredListings
+        const {listings, flights, searchParams, onBookClick, searchUsingFlightNumber} = this.props;
+        let filteredListings = [];
         if (searchUsingFlightNumber) {
             filteredListings = listings.filter((l) =>
                 (!l.booked &&
                     this.matchStrings(searchParams.flightNumber, l.flightInfo.flightNumber)));
+        } else {
+            const filteredFlights = flights.filter((f) =>
+                (this.matchStrings(searchParams.from, f.departureLoc) &&
+                    this.matchStrings(searchParams.to, f.arrivalLoc)));
+            filteredFlights.forEach((f) =>
+                filteredListings.push(...listings.filter((l) => (l.flightInfo.flightNumber === f.flightNumber))))
         }
-        else {
-            filteredListings = listings.filter((l) =>
-                (!l.booked &&
-                    this.matchStrings(searchParams.from, l.flightInfo.departureLoc) &&
-                    this.matchStrings(searchParams.to, l.flightInfo.arrivalLoc)));
-        }
-        const items = filteredListings.map((l) => <ShelfItem listing={l} onBookClick={onBookClick}/>);
+        let filteredDates = filteredListings.filter((l)=> l.flightInfo.date === searchParams.date);
+        const items = filteredDates.map((l) =>
+            <ShelfItem
+                listing={l}
+                onBookClick={onBookClick}
+                flight={flights.find((f)=>(f.flightNumber === l.flightInfo.flightNumber))}/>
+        )
         return (
             <div className="result-shelf">
                 {items}

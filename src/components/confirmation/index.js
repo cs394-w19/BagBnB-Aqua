@@ -10,10 +10,11 @@ const qs = require('query-string');
 class Confirmation extends Component {
     constructor(props) {
         super(props);
-        const listings = this.props.listings;
+        const { listings, flights }= this.props
         const listingId = qs.parse(this.props.location.search).id;
         const listing = listings.find((l) => l.id === listingId);
-        const timeArray = listing.flightInfo.departureTime.split(':');
+        const flight = flights.find((f)=> f.flightNumber === listing.flightInfo.flightNumber)
+        const timeArray = flight.departureTime.split(':');
         let hour = parseInt(timeArray[0]) - 2
         if (hour < 0) {
             hour += 24;
@@ -28,20 +29,21 @@ class Confirmation extends Component {
     }
 
     render() {
-        const {listings, onConfirmClick} = this.props;
+        const {listings, onConfirmClick, flights} = this.props;
         const listingId = qs.parse(this.props.location.search).id;
         const listing = listings.find((l) => l.id === listingId);
+        const flight = flights.find((f)=> f.flightNumber === listing.flightInfo.flightNumber)
         return (
             <div className="confirmation-screen">
                 <div className="details">
                 <span className="details-flight">
                     <span className="details-flight-number">{listing.flightInfo.flightNumber}</span>
                     <div className="details-flight-location">
-                        <span>{listing.flightInfo.departureLoc}</span> &#8594;<span> {listing.flightInfo.arrivalLoc}</span>
+                        <span>{flight.departureLoc}</span> &#8594;<span> {flight.arrivalLoc}</span>
                     </div>
                     <div className="details-flight-time">
-                        <span>{listing.flightInfo.departureTime}</span>&nbsp;&mdash;&nbsp;
-                        <span>{listing.flightInfo.arrivalTime}</span>
+                        <span>{flight.departureTime}</span>&nbsp;&mdash;&nbsp;
+                        <span>{flight.arrivalTime}</span>
                     </div>
                 </span>
                     <span className="details-seller">
@@ -50,7 +52,7 @@ class Confirmation extends Component {
                     </span>
                 </div>
                 <div className="details-meeting">
-                <p>Meeting Place: {listing.flightInfo.departureLoc} Terminal 5</p>
+                <p>Meeting Place: {flight.departureLoc} Terminal 5</p>
                 <p>Meeting Time:
                     <input
                         className="details-meeting-time"

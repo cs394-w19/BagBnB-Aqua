@@ -69,6 +69,7 @@ class SearchInfo extends Component {
                                value={searchParams.date} onChange={this.handleDateChange}/>
                     </div>
                 </form>
+                <div className="results-header">Results for {searchParams.date}:</div>
             </div>
         )
     }

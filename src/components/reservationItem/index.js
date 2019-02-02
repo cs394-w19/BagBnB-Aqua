@@ -7,12 +7,13 @@ import chatImage from "../../chat.svg";
 class ReservationItem extends Component {
 
     render() {
-        const {listing, user, reservation} = this.props;
+        const {listing, user, reservation, flight} = this.props;
         const flightInfo = listing.flightInfo;
         return (
             <div className="reservation">
                 <div className="meeting-details">
                     <div className="meeting-details-dt">
+                        Meeting Details:
                         <div className="meeting-details-dt-time">{reservation.meetingTime}</div>
                         <div className="meeting-details-dt-date">{flightInfo.date}</div>
                     </div>
@@ -23,13 +24,13 @@ class ReservationItem extends Component {
                         Flight Info:
                         <div className="flight-details-number">{flightInfo.flightNumber}</div>
                         <div className="flight-details-location">
-                            <span>{flightInfo.departureLoc}</span> &#8594;
-                            <span> {flightInfo.arrivalLoc}</span>
+                            <span>{flight.departureLoc}</span> &#8594;
+                            <span> {flight.arrivalLoc}</span>
                         </div>
                         <div className="flight-details-time">
-                            <span>{flightInfo.departureTime}</span>
+                            <span>{flight.departureTime}</span>
                             &nbsp;&mdash;&nbsp;
-                            <span>{flightInfo.arrivalTime}</span>
+                            <span>{flight.arrivalTime}</span>
                         </div>
                     </div>
                     <div className="listing-details">

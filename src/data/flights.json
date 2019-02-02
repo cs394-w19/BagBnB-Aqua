@@ -1,24 +1,39 @@
 {
   "flights": [
     {
-      "flightNumber": "AA 25",
-      "departureLoc": "ORD",
-      "arrivalLoc": "LGA"
-    },
-    {
-      "flightNumber": "TK 5",
-      "departureLoc": "IST",
-      "arrivalLoc": "ORD"
-    },
-    {
-      "flightNumber": "AA 12",
-      "departureLoc": "LAX",
-      "arrivalLoc": "LHR"
-    },
-    {
-      "flightNumber": "SW 20",
+      "flightNumber": "SW20",
       "departureLoc": "OHR",
-      "arrivalLoc": "JFK"
+      "arrivalLoc": "JFK",
+      "departureTime": "10:00",
+      "arrivalTime": "12:50"
+    },
+    {
+      "flightNumber": "UT12",
+      "departureLoc": "ORD",
+      "arrivalLoc": "LGA",
+      "departureTime": "13:00",
+      "arrivalTime": "20:00"
+    },
+    {
+      "flightNumber": "AA32",
+      "departureLoc": "LAX",
+      "arrivalLoc": "OHL",
+      "departureTime": "18:00",
+      "arrivalTime": "22:00"
+    },
+    {
+      "flightNumber": "SW28",
+      "departureLoc": "HTH",
+      "arrivalLoc": "JFK",
+      "departureTime": "06:00",
+      "arrivalTime": "10:50"
+    },
+    {
+      "flightNumber": "AA25",
+      "departureLoc": "ORD",
+      "arrivalLoc": "LGA",
+      "departureTime": "08:30",
+      "arrivalTime": "10:50"
     }
   ]
 }

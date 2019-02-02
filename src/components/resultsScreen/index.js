@@ -12,7 +12,7 @@ class ResultsScreen extends Component {
             searchParams: {
                 to: '',
                 from: '',
-                date: new Date().toISOString(),
+                date: new Date().toISOString().slice(0,10),
                 flightNumber: ''
             },
             searchUsingFlightNumber: true
@@ -78,6 +78,7 @@ class ResultsScreen extends Component {
                     searchParams={this.state.searchParams}
                     onBookClick={this.onBookClick}
                     searchUsingFlightNumber={this.state.searchUsingFlightNumber}
+                    flights={this.props.flights}
                 />
             </div>
         )
