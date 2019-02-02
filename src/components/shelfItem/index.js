@@ -3,12 +3,14 @@ import "./style.scss";
 
 
 class ShelfItem extends Component {
+
     render() {
         const listing = this.props.listing;
         const flightInfo = listing.flightInfo;
         return (
             <div className="shelf-item">
                 <div className="shelf-item-carrier">{listing.vendorName}</div>
+                
                 <div className="shelf-item-info">
                     <div className="shelf-item-info-flight">
                         <div className="shelf-item-info-flight-number">{flightInfo.flightNumber}</div>
