@@ -29,7 +29,7 @@ class SellInfo extends Component {
     }
 
     render() {
-        const { searchUsingFlightNumber, searchParams}= this.props;
+        const {searchParams}= this.props;
 //        const flightNumberClassName = classname(
 //            "search-flight-tab-button",
 //            {"search-flight-tab-button-active": searchUsingFlightNumber})
