@@ -1,0 +1,23 @@
+.title {
+  display:flex;
+  text-align: center;
+  padding: 20px;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffffcc;
+  height: 150px;
+  box-shadow: 0 2px 5px -2px #000;
+  width: 100%;
+    &-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #CDE2E5;
+    height: 150px;
+    padding: 10px;
+    width: 40%;
+}
+}
