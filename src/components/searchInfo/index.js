@@ -38,7 +38,7 @@ class SearchInfo extends Component {
             {"search-flight-tab-button-active": !searchUsingFlightNumber})
         return (
             <div>
-                <form className="search">
+                <div className="search">
                     <div className="search-flight">
                         <div className="search-flight-tab">
                             <div className={flightNumberClassName}
@@ -68,7 +68,7 @@ class SearchInfo extends Component {
                         <input className="search-date-input" type="date"
                                value={searchParams.date} onChange={this.handleDateChange}/>
                     </div>
-                </form>
+                </div>
                 <div className="results-header">Results for {searchParams.date}:</div>
             </div>
         )
