@@ -20,7 +20,7 @@ class ReservationScreen extends Component {
 
     componentDidMount() {
         const db = this.props.db;
-        const username = qs.parse(this.props.location.search).username;
+        const username = this.props.user;
         let reservations = []
         db.collection("reservations").get().then((querySnapshot)=> {
             querySnapshot.forEach((doc)=> {

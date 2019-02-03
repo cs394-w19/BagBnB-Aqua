@@ -12,7 +12,7 @@ class TopNavigation extends Component {
 		return (
 			<div className="header">
 				<button className="TopNavigationButton" onClick={() => this.props.history.goBack()}><img className="TopNavigationButton-image" src={back} alt="back"/></button>
-				<img className="logo" src={logo} alt="Bagdrop"/>
+				<img className="logo" src={logo} alt="Bagdrop" onClick={() => this.props.history.push('/')} />
 			</div>
 		);
 	}

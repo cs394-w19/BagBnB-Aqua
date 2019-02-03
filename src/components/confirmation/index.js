@@ -67,10 +67,9 @@ class Confirmation extends Component {
                     <div>{listing.weight} lbs</div>
                 </span>
                 <button className="details-booking-button" onClick={() => {
-                    onConfirmClick(listingId, "karenk", this.state.meetingTime);
+                    onConfirmClick(listingId, this.state.meetingTime);
                     this.props.history.push({
-                        pathname: "/reservations",
-                        search: "?username=karenk"
+                        pathname: "/reservations"
                     });
                 }}>
                     Confirm Booking
