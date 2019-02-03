@@ -8,7 +8,7 @@ class ShelfItem extends Component {
         const { listing, flight } = this.props;
         return (
             <div className="shelf-item">
-                <div className="shelf-item-carrier">{listing.vendorName}</div>
+                <div className="shelf-item-carrier">{flight.carrier}</div>
                 
                 <div className="shelf-item-info">
                     <div className="shelf-item-info-flight">
