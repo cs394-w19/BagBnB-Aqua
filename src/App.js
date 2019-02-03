@@ -17,15 +17,18 @@ class App extends Component {
         super(props);
         this.state = {
             listings: [],
-            flights: []
+            flights: [],
+            reservations: []
         };
         this.db = firestore();
+        this.deleteReservation = this.deleteReservation.bind(this);
     }
 
     componentDidMount() {
         this.db.collection("listings").get().then((querySnapshot) => {
             let listings = [];
             let flights = [];
+            let reservations = [];
             querySnapshot.forEach((doc) => {
                 listings.push({
                     id: doc.id,
@@ -39,21 +42,58 @@ class App extends Component {
                 flights.sort(function(a, b){
                     return a.flightNumber-b.flightNumber
                 })
-                this.setState({
-                    listings: listings,
-                    flights: flights
+                this.db.collection("reservations").get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                            reservations.push({
+                                listingId: doc.id,
+                                ...doc.data()
+                            })
+                    })
+
+                    this.setState({
+                        listings: listings,
+                        flights: flights,
+                        reservations: reservations
+                    })
                 })
             })
         })
     }
 
+    deleteReservation(reservation) {
+        let state = this.state;
+        let listing = state.listings.find(l => l.id === reservation.listingId);
+        this.db.collection("reservations")
+            .doc(reservation.listingId).delete()
+            .then(function() {
+                console.log("Document successfully deleted!");
+            }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+
+        listing.booked = false;
+        this.db.collection("listings")
+            .doc(reservation.listingId)
+            .set(listing)
+            .then(res => {
+                console.log("Document successfully written!")
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        state.reservations = state.reservations.filter(r=> r.listingId !== reservation.listingId)
+        this.setState(state);
+    }
+
     onConfirmClick = (listingId, username, meetingTime) => {
-        let listing = this.state.listings.find(l => l.id === listingId);
+        let state = this.state;
+        let listing = state.listings.find(l => l.id === listingId);
         listing.booked = true;
         let reservation = {
             "buyerUsername": username,
             "meetingTime": meetingTime
         };
+        state.reservations.push({...reservation, listingId: listingId});
         this.db.collection("reservations")
             .doc(listingId)
             .set(reservation)
@@ -72,6 +112,7 @@ class App extends Component {
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
+        this.setState(state);
     };
 
     render() {
@@ -107,7 +148,7 @@ class App extends Component {
                         <Route
                             path="/reservations"
                             render={() => (
-                                <ReservationsScreen listings={this.state.listings} flights={this.state.flights} db={this.db}/>
+                                <ReservationsScreen listings={this.state.listings} flights={this.state.flights} db={this.db} reservations = {this.state.reservations} deleteReservation = {this.deleteReservation}/>
                             )}
                         />
                     </div>
