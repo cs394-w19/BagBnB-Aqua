@@ -8,31 +8,42 @@ import Homepage from "./components/homepage";
 import ReservationsScreen from "./components/reservationPage";
 import TopNavigation from "./components/topNavigation"
 import ResultsScreen from "./components/resultsScreen";
-import SellLuggageAllowance from "./components/sellLuggageAllowance";
+import SellInfo from "./components/sellInfo";
 import Confirmation from "./components/confirmation";
 import firestore from "./firestore";
-//data
-import flightData from "./data/flights.json";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listings: []
+            listings: [],
+            flights: []
         };
         this.db = firestore();
     }
 
     componentDidMount() {
-        let listings = [];
         this.db.collection("listings").get().then((querySnapshot) => {
+            let listings = [];
+            let flights = [];
             querySnapshot.forEach((doc) => {
                 listings.push({
                     id: doc.id,
                     ...doc.data()
                 })
             });
-            this.setState({listings: listings})
+            this.db.collection("flights").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    flights.push(doc.data())
+                });
+                flights.sort(function(a, b){
+                    return a.flightNumber-b.flightNumber
+                })
+                this.setState({
+                    listings: listings,
+                    flights: flights
+                })
+            })
         })
     }
 
@@ -52,6 +63,15 @@ class App extends Component {
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
+        this.db.collection("listings")
+            .doc(listingId)
+            .set(listing)
+            .then(res => {
+                console.log("Document successfully written!")
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
     };
 
     render() {
@@ -65,13 +85,13 @@ class App extends Component {
                         <Route
                             path="/listings"
                             render={() => (
-                                <ResultsScreen listings={this.state.listings} flights={flightData.flights}/>
+                                <ResultsScreen listings={this.state.listings} flights={this.state.flights}/>
                             )}
                         />
                         <Route
                             path="/sellLuggageAllowance"
                             render={() => (
-                                <SellLuggageAllowance db={this.db}/>
+                                <SellInfo db={this.db} flights={this.state.flights}/>
                             )}
                         />
                         <Route
@@ -80,14 +100,14 @@ class App extends Component {
                                 <Confirmation
                                     listings={this.state.listings}
                                     onConfirmClick={this.onConfirmClick}
-                                    flights={flightData.flights}
+                                    flights={this.state.flights}
                                 />
                             )}
                         />
                         <Route
                             path="/reservations"
                             render={() => (
-                                <ReservationsScreen listings={this.state.listings} flights={flightData.flights} db={this.db}/>
+                                <ReservationsScreen listings={this.state.listings} flights={this.state.flights} db={this.db}/>
                             )}
                         />
                     </div>

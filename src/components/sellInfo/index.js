@@ -43,7 +43,8 @@ class SellInfo extends Component {
                 "flightNumber": this.flightNumber,
                 "date": this.date
             },
-            "listedBy":this.listedBy
+            "listedBy":this.listedBy,
+            "booked": false
         }
         db.collection("listings").get().then((querySnapshot) => {
             const index = querySnapshot.size + 1;
@@ -67,20 +68,52 @@ class SellInfo extends Component {
     
 
     render() {
-        
+        const flights = this.props.flights
+        const flightOptions =  flights.map(f => (
+            <option value={f.flightNumber}>{f.flightNumber}</option>
+        ))
         return (
-            <div className="listing-form">
-                <form className="listing-form-input">
-                    Price: <input placeholder="price" 
-                        type="text" defaultValue={this.price} onChange={this.handlePriceChange}/>
-                    Weight: <input placeholder="weight"
-                        type="text" defaultValue={this.weight} onChange={this.handleWeightChange}/>
-                    FlightNumber: <input placeholder=""
-                        type="text" defaultValue={this.flightNumber} onChange={this.handleFlightNumberChange}/>
-                    theDate: <input
-                        type="date" defaultValue={this.date} onChange={this.handleDateChange}/>
+            <div>
+                <form className="listing-form" onSubmit={this.onCreateClick}>
+                    <div className="listing-form-header">Flight and Baggage Allowance Details</div>
+                    <div className="listing-form-field">
+                        <div className="listing-form-field-label">Flight Number:</div>
+                        <select
+                            placeholder="Choose Flight"
+                            className="listing-form-field-input"
+                            onChange={this.handleFlightNumberChange}>
+                            {flightOptions}
+                        </select>
+                    </div>
+                    <div className="listing-form-field">
+                        <div className="listing-form-field-label">Date:</div>
+                        <input
+                            type="date"
+                            className="listing-form-field-input"
+                            defaultValue={this.date}
+                            onChange={this.handleDateChange}/>
+                    </div>
+                    <div className="listing-form-field">
+                        <div className="listing-form-field-label">Price:</div>
+                        <input
+                            placeholder="price"
+                            className="listing-form-field-input"
+                            type="text"
+                            defaultValue={this.price}
+                            onChange={this.handlePriceChange}/>
+                    </div>
+                    <div className="listing-form-field">
+                        <div className="listing-form-field-label">Weight:</div>
+                        <input
+                            placeholder="weight"
+                            className="listing-form-field-input"
+                            type="text"
+                            defaultValue={this.weight}
+                            onChange={this.handleWeightChange}/>
+                    </div>
+                    <button onClick={this.onCreateClick} className="listing-form-button">Create Listing</button>
                 </form>
-                <button onClick={this.onCreateClick}>Create Listing</button>
+
             </div>
         )
     }

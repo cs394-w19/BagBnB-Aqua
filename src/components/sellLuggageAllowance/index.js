@@ -8,11 +8,11 @@ class SellLuggageAllowance extends Component {
     
 
     render() {
-        let db = this.props.db;
+        const { db, flights } = this.props;
         return (
             <div className='results-screen'>
-            <div className="header-styling"><h1>Enter Flight and Baggage Details:</h1></div>
-                <SellInfo db={db}/>
+            <div className="header-styling"><h1>Enter Flight and Baggage Allowance Details:</h1></div>
+                <SellInfo db={db} flights={flights}/>
             </div>
         )
     }
