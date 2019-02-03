@@ -19,13 +19,12 @@ class ReservationScreen extends Component {
             reservations: [],
             listings: []
         };
-        this.db = firestore();
     }
 
 
     render() {
         const {flights, listings} = this.props;
-        const username = qs.parse(this.props.location.search).username;
+        const username = this.props.user;
         this.reservations = this.props.reservations.filter(r => r.buyerUsername === username);
         const items = this.reservations.map(r => {
             const listing = listings.find(l => l.id === r.listingId);

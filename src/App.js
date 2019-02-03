@@ -1,27 +1,36 @@
 //Dependencies
-import React, {Component} from "react";
-import {BrowserRouter, Route} from "react-router-dom";
+import React, { Component } from "react"
+import { BrowserRouter, Route } from "react-router-dom"
 //styles
-import "./App.scss";
+import "./App.scss"
 //components
-import Homepage from "./components/homepage";
-import ReservationsScreen from "./components/reservationPage";
+import Homepage from "./components/homepage"
+import ReservationsScreen from "./components/reservationPage"
 import TopNavigation from "./components/topNavigation"
-import ResultsScreen from "./components/resultsScreen";
-import SellInfo from "./components/sellInfo";
-import Confirmation from "./components/confirmation";
-import firestore from "./firestore";
+import ResultsScreen from "./components/resultsScreen"
+import SellInfo from "./components/sellInfo"
+import Confirmation from "./components/confirmation"
+import firebase from "./firestore"
+import Login from "./components/login"
 
 class App extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             listings: [],
             flights: [],
-            reservations: []
+            username: "",
+          reservations: []
         };
-        this.db = firestore();
+        this.db = firebase.firestore()
+        this.fb = firebase
         this.deleteReservation = this.deleteReservation.bind(this);
+    }
+
+    userCredentials(email) {
+        this.setState({
+            username: email.split("@")[0]
+        })
     }
 
     componentDidMount() {
@@ -56,8 +65,22 @@ class App extends Component {
                         reservations: reservations
                     })
                 })
+                this.db
+                    .collection("flights")
+                    .get()
+                    .then(querySnapshot => {
+                        querySnapshot.forEach(doc => {
+                            flights.push(doc.data())
+                        })
+                        flights.sort(function(a, b) {
+                            return a.flightNumber - b.flightNumber
+                        })
+                        this.setState({
+                            listings: listings,
+                            flights: flights
+                        })
+                    })
             })
-        })
     }
 
     deleteReservation(reservation) {
@@ -90,7 +113,7 @@ class App extends Component {
         let listing = state.listings.find(l => l.id === listingId);
         listing.booked = true;
         let reservation = {
-            "buyerUsername": username,
+            "buyerUsername": this.state.username,
             "meetingTime": meetingTime
         };
         state.reservations.push({...reservation, listingId: listingId});
@@ -100,15 +123,17 @@ class App extends Component {
             .then(res => {
                 console.log("Document successfully written!")
             })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-        this.db.collection("listings")
+            .catch(error => {
+                console.error("Error writing document: ", error)
+            })
+        this.db
+            .collection("listings")
             .doc(listingId)
             .set(listing)
             .then(res => {
                 console.log("Document successfully written!")
             })
+
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
@@ -118,27 +143,52 @@ class App extends Component {
     render() {
         return (
             <BrowserRouter>
-
                 <div className="app">
-                    <TopNavigation/>
+                    <TopNavigation />
                     <div className="screen">
-                        <Route exact path="/" render={() => <Homepage/>}/>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => {
+                                if (this.state.username != "") {
+                                    return <Homepage />
+                                } else {
+                                    return (
+                                        <Login
+                                            firebase={this.fb}
+                                            userCredentials={this.userCredentials.bind(
+                                                this
+                                            )}
+                                        />
+                                    )
+                                }
+                            }}
+                        />
                         <Route
                             path="/listings"
                             render={() => (
-                                <ResultsScreen listings={this.state.listings} flights={this.state.flights}/>
+                                <ResultsScreen
+                                    user={this.state.username}
+                                    listings={this.state.listings}
+                                    flights={this.state.flights}
+                                />
                             )}
                         />
                         <Route
                             path="/new"
                             render={() => (
-                                <SellInfo db={this.db} flights={this.state.flights}/>
+                                <SellInfo
+                                    user={this.state.username}
+                                    db={this.db}
+                                    flights={this.state.flights}
+                                />
                             )}
                         />
                         <Route
                             path="/confirmation"
                             render={() => (
                                 <Confirmation
+                                    user={this.state.username}
                                     listings={this.state.listings}
                                     onConfirmClick={this.onConfirmClick}
                                     flights={this.state.flights}
@@ -148,14 +198,21 @@ class App extends Component {
                         <Route
                             path="/reservations"
                             render={() => (
-                                <ReservationsScreen listings={this.state.listings} flights={this.state.flights} db={this.db} reservations = {this.state.reservations} deleteReservation = {this.deleteReservation}/>
+                                <ReservationsScreen
+                                    user={this.state.username}
+                                    listings={this.state.listings}
+                                    flights={this.state.flights}
+                                    db={this.db}
+                                    deleteReservation = {this.deleteReservation}
+                                    reservations = {this.state.reservations}
+                                />
                             )}
                         />
                     </div>
                 </div>
             </BrowserRouter>
-        );
+        )
     }
 }
 
-export default App;
+export default App
