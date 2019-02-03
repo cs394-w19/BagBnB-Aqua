@@ -9,7 +9,7 @@ class Login extends Component {
     handleInputChange = event => {
         this.setState({ [event.target.name]: event.target.value })
     }
-    handleSubmit = event => {
+    handleLogin = event => {
         event.preventDefault()
         const { email, password } = this.state
         this.props.firebase
@@ -23,6 +23,29 @@ class Login extends Component {
             })
         this.props.userCredentials(email)
     }
+
+    handleSignUp = event => {
+        event.preventDefault()
+        const { email, password } = this.state
+        this.props.firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(user => {
+                this.props.firebase
+                    .auth()
+                    .signInWithEmailAndPassword(email, password)
+                    .then(user => {
+                        this.props.history.push("/")
+                    })
+                    .catch(error => {
+                        this.setState({ error: error })
+                    })
+            })
+            .catch(error => {
+                this.setState({ error: error })
+            })
+    }
+
     render() {
         const { email, password, error } = this.state
         return (
@@ -41,7 +64,7 @@ class Login extends Component {
                 ) : null}
                 <div>
                     <div>
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleLogin}>
                             <input
                                 type="text"
                                 name="email"
@@ -57,6 +80,10 @@ class Login extends Component {
                                 onChange={this.handleInputChange}
                             />
                             <button children="Log In" />
+                            <button
+                                children="Sign Up"
+                                onClick={this.handleSignUp}
+                            />
                         </form>
                     </div>
                 </div>
