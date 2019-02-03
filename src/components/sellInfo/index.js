@@ -13,7 +13,7 @@ class SellInfo extends Component {
         this.onCreateClick = this.onCreateClick.bind(this);
         this.price = 30;
         this.weight = 50;
-        this.flightNumber = "";
+        this.flightNumber = "Select Flight";
         this.date = "";
         this.listedBy = "karenk";
     }
@@ -35,43 +35,61 @@ class SellInfo extends Component {
     }
 
     onCreateClick = () => {
-        const db = this.props.db;
-        let listing = {
-            "price":this.price,
-            "weight":this.weight,
-            "flightInfo": {
-                "flightNumber": this.flightNumber,
-                "date": this.date
-            },
-            "listedBy":this.listedBy,
-            "booked": false
-        }
-        db.collection("listings").get().then((querySnapshot) => {
-            const index = querySnapshot.size + 1;
-            let number = index.toString();
-            let numZeroes = 5 - number.length;
-            for (var i of  Array(numZeroes).keys()) {
-                number = "0" + number;
+        if (this.price && this.weight && this.flightNumber && this.date){
+            const db = this.props.db;
+            let listing = {
+                "price": this.price,
+                "weight": this.weight,
+                "flightInfo": {
+                    "flightNumber": this.flightNumber,
+                    "date": this.date
+                },
+                "listedBy": this.listedBy,
+                "booked": false
             }
-            console.log(listing)
-            db.collection("listings")
-                .doc(number)
-                .set(listing)
-                .then(res=> {
-                    console.log("Document Successfully Written!")
-                })
-                .catch(error=> {
-                    console.error("Error writing document: ", error)
-                })
-        })
+            db.collection("listings").get().then((querySnapshot) => {
+                const index = querySnapshot.size + 1;
+                let number = index.toString();
+                let numZeroes = 5 - number.length;
+                for (var i of  Array(numZeroes).keys()) {
+                    number = "0" + number;
+                }
+                console.log(listing)
+                db.collection("listings")
+                    .doc(number)
+                    .set(listing)
+                    .then(res => {
+                        console.log("Document Successfully Written!")
+                    })
+                    .catch(error => {
+                        console.error("Error writing document: ", error)
+                    })
+            })
+        } else {
+            let alertMsg = "Please fill in the following: "
+            if (!this.price){
+                alertMsg = alertMsg + " -Price ";
+            }
+            if (!this.weight){
+                alertMsg = alertMsg + " -Weight";
+            }
+            if (!this.flightNumber || this.flightNumber === "Select Flight"){
+                alertMsg = alertMsg + " -Flight Number";
+            }
+            if (!this.date){
+                alertMsg = alertMsg + " -Date";
+            }
+            alert(alertMsg);
+        }
     }
     
 
     render() {
         const flights = this.props.flights
-        const flightOptions =  flights.map(f => (
+        let flightOptions =  flights.map(f => (
             <option value={f.flightNumber}>{f.flightNumber}</option>
         ))
+        flightOptions.unshift(<option value="Select Flight">Select Flight</option>)
         return (
             <div>
                 <form className="listing-form" onSubmit={this.onCreateClick}>

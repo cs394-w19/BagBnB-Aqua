@@ -89,7 +89,7 @@ class App extends Component {
                             )}
                         />
                         <Route
-                            path="/sellLuggageAllowance"
+                            path="/new"
                             render={() => (
                                 <SellInfo db={this.db} flights={this.state.flights}/>
                             )}
