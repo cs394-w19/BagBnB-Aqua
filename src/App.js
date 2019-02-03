@@ -1,6 +1,6 @@
 //Dependencies
-import React, { Component } from "react"
-import { BrowserRouter, Route } from "react-router-dom"
+import React, {Component} from "react"
+import {BrowserRouter, Route} from "react-router-dom"
 //styles
 import "./App.scss"
 //components
@@ -12,6 +12,7 @@ import SellInfo from "./components/sellInfo"
 import Confirmation from "./components/confirmation"
 import firebase from "./firestore"
 import Login from "./components/login"
+import SellerScreen from "./components/sellerScreen"
 
 class App extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component {
             listings: [],
             flights: [],
             username: "",
-          reservations: []
+            reservations: []
         };
         this.db = firebase.firestore()
         this.fb = firebase
@@ -48,15 +49,15 @@ class App extends Component {
                 querySnapshot.forEach((doc) => {
                     flights.push(doc.data())
                 });
-                flights.sort(function(a, b){
-                    return a.flightNumber-b.flightNumber
+                flights.sort(function (a, b) {
+                    return a.flightNumber - b.flightNumber
                 })
                 this.db.collection("reservations").get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
-                            reservations.push({
-                                listingId: doc.id,
-                                ...doc.data()
-                            })
+                        reservations.push({
+                            listingId: doc.id,
+                            ...doc.data()
+                        })
                     })
 
                     this.setState({
@@ -72,7 +73,7 @@ class App extends Component {
                         querySnapshot.forEach(doc => {
                             flights.push(doc.data())
                         })
-                        flights.sort(function(a, b) {
+                        flights.sort(function (a, b) {
                             return a.flightNumber - b.flightNumber
                         })
                         this.setState({
@@ -81,6 +82,7 @@ class App extends Component {
                         })
                     })
             })
+        })
     }
 
     deleteReservation(reservation) {
@@ -88,9 +90,9 @@ class App extends Component {
         let listing = state.listings.find(l => l.id === reservation.listingId);
         this.db.collection("reservations")
             .doc(reservation.listingId).delete()
-            .then(function() {
+            .then(function () {
                 console.log("Document successfully deleted!");
-            }).catch(function(error) {
+            }).catch(function (error) {
             console.error("Error removing document: ", error);
         });
 
@@ -104,7 +106,7 @@ class App extends Component {
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
-        state.reservations = state.reservations.filter(r=> r.listingId !== reservation.listingId)
+        state.reservations = state.reservations.filter(r => r.listingId !== reservation.listingId)
         this.setState(state);
     }
 
@@ -144,14 +146,14 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className="app">
-                    <TopNavigation />
+                    <TopNavigation/>
                     <div className="screen">
                         <Route
                             exact
                             path="/"
                             render={() => {
                                 if (this.state.username != "") {
-                                    return <Homepage />
+                                    return <Homepage/>
                                 } else {
                                     return (
                                         <Login
@@ -202,9 +204,19 @@ class App extends Component {
                                     user={this.state.username}
                                     listings={this.state.listings}
                                     flights={this.state.flights}
-                                    db={this.db}
-                                    deleteReservation = {this.deleteReservation}
-                                    reservations = {this.state.reservations}
+                                    deleteReservation={this.deleteReservation}
+                                    reservations={this.state.reservations}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/yourlistings"
+                            render={() => (
+                                <SellerScreen
+                                    user={this.state.username}
+                                    listings={this.state.listings}
+                                    flights={this.state.flights}
+                                    reservations={this.state.reservations}
                                 />
                             )}
                         />

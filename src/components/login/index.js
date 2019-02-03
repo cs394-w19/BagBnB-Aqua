@@ -10,7 +10,6 @@ class Login extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
     handleSubmit = event => {
-        console.log('how')
         event.preventDefault()
         const { email, password } = this.state
         this.props.firebase

@@ -7,21 +7,7 @@ import ReservationItem from "../reservationItem";
 
 import usersData from "../../data/user.json";
 
-import firestore from "../../firestore.js";
-
-const qs = require("query-string");
-
 class ReservationScreen extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            reservations: [],
-            listings: []
-        };
-    }
-
-
     render() {
         const {flights, listings} = this.props;
         const username = this.props.user;

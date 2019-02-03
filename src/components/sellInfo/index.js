@@ -54,7 +54,6 @@ class SellInfo extends Component {
                 for (var i of  Array(numZeroes).keys()) {
                     number = "0" + number;
                 }
-                console.log(listing)
                 db.collection("listings")
                     .doc(number)
                     .set(listing)

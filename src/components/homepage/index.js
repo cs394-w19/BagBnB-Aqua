@@ -4,14 +4,6 @@ import "./style.scss";
 
 class Homepage extends Component {
 
-    onReserveClick(username) {
-        this.props.history.push(
-            {
-                pathname: "/reservations",
-                search: "?username=" + username
-            })
-    }
-
     render() {
         return (
             <div className="homepage">
@@ -29,10 +21,15 @@ class Homepage extends Component {
                 </div>
                 <button
                     className="homepage-reservation-buttons"
-                    //onClick={() => getHistory().push("/reservations")}
-                    onClick={() => this.onReserveClick("karenk")}
+                    onClick={() => this.props.history.push("/reservations")}
                 >
-                    See Reservations
+                    Your Reservations
+                </button>
+                <button
+                    className="homepage-reservation-buttons"
+                    onClick={() => this.props.history.push("/yourlistings")}
+                >
+                    Your Listings
                 </button>
             </div>
         )
