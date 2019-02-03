@@ -20,11 +20,11 @@ class App extends Component {
             listings: [],
             flights: [],
             username: "",
-          reservations: []
-        };
+            reservations: []
+        }
         this.db = firebase.firestore()
         this.fb = firebase
-        this.deleteReservation = this.deleteReservation.bind(this);
+        this.deleteReservation = this.deleteReservation.bind(this)
     }
 
     userCredentials(email) {
@@ -34,35 +34,17 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.db.collection("listings").get().then((querySnapshot) => {
-            let listings = [];
-            let flights = [];
-            let reservations = [];
-            querySnapshot.forEach((doc) => {
-                listings.push({
-                    id: doc.id,
-                    ...doc.data()
-                })
-            });
-            this.db.collection("flights").get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    flights.push(doc.data())
-                });
-                flights.sort(function(a, b){
-                    return a.flightNumber-b.flightNumber
-                })
-                this.db.collection("reservations").get().then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                            reservations.push({
-                                listingId: doc.id,
-                                ...doc.data()
-                            })
-                    })
-
-                    this.setState({
-                        listings: listings,
-                        flights: flights,
-                        reservations: reservations
+        this.db
+            .collection("listings")
+            .get()
+            .then(querySnapshot => {
+                let listings = []
+                let flights = []
+                let reservations = []
+                querySnapshot.forEach(doc => {
+                    listings.push({
+                        id: doc.id,
+                        ...doc.data()
                     })
                 })
                 this.db
@@ -75,49 +57,84 @@ class App extends Component {
                         flights.sort(function(a, b) {
                             return a.flightNumber - b.flightNumber
                         })
-                        this.setState({
-                            listings: listings,
-                            flights: flights
-                        })
+                        this.db
+                            .collection("reservations")
+                            .get()
+                            .then(querySnapshot => {
+                                querySnapshot.forEach(doc => {
+                                    reservations.push({
+                                        listingId: doc.id,
+                                        ...doc.data()
+                                    })
+                                })
+
+                                this.setState({
+                                    listings: listings,
+                                    flights: flights,
+                                    reservations: reservations
+                                })
+                            })
+                        this.db
+                            .collection("flights")
+                            .get()
+                            .then(querySnapshot => {
+                                querySnapshot.forEach(doc => {
+                                    flights.push(doc.data())
+                                })
+                                flights.sort(function(a, b) {
+                                    return a.flightNumber - b.flightNumber
+                                })
+                                this.setState({
+                                    listings: listings,
+                                    flights: flights
+                                })
+                            })
                     })
             })
     }
 
     deleteReservation(reservation) {
-        let state = this.state;
-        let listing = state.listings.find(l => l.id === reservation.listingId);
-        this.db.collection("reservations")
-            .doc(reservation.listingId).delete()
+        let state = this.state
+        let listing = state.listings.find(l => l.id === reservation.listingId)
+        this.db
+            .collection("reservations")
+            .doc(reservation.listingId)
+            .delete()
             .then(function() {
-                console.log("Document successfully deleted!");
-            }).catch(function(error) {
-            console.error("Error removing document: ", error);
-        });
+                console.log("Document successfully deleted!")
+            })
+            .catch(function(error) {
+                console.error("Error removing document: ", error)
+            })
 
-        listing.booked = false;
-        this.db.collection("listings")
+        listing.booked = false
+        this.db
+            .collection("listings")
             .doc(reservation.listingId)
             .set(listing)
             .then(res => {
                 console.log("Document successfully written!")
             })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-        state.reservations = state.reservations.filter(r=> r.listingId !== reservation.listingId)
-        this.setState(state);
+            .catch(error => {
+                console.error("Error writing document: ", error)
+            })
+        state.reservations = state.reservations.filter(
+            r => r.listingId !== reservation.listingId
+        )
+        this.setState(state)
     }
 
     onConfirmClick = (listingId, username, meetingTime) => {
-        let state = this.state;
-        let listing = state.listings.find(l => l.id === listingId);
-        listing.booked = true;
+        let state = this.state
+        let listing = state.listings.find(l => l.id === listingId)
+        listing.booked = true
         let reservation = {
-            "buyerUsername": this.state.username,
-            "meetingTime": meetingTime
-        };
-        state.reservations.push({...reservation, listingId: listingId});
-        this.db.collection("reservations")
+            buyerUsername: this.state.username,
+            meetingTime: meetingTime
+        }
+        state.reservations.push({ ...reservation, listingId: listingId })
+        this.db
+            .collection("reservations")
             .doc(listingId)
             .set(reservation)
             .then(res => {
@@ -134,11 +151,11 @@ class App extends Component {
                 console.log("Document successfully written!")
             })
 
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-        this.setState(state);
-    };
+            .catch(error => {
+                console.error("Error writing document: ", error)
+            })
+        this.setState(state)
+    }
 
     render() {
         return (
@@ -203,8 +220,8 @@ class App extends Component {
                                     listings={this.state.listings}
                                     flights={this.state.flights}
                                     db={this.db}
-                                    deleteReservation = {this.deleteReservation}
-                                    reservations = {this.state.reservations}
+                                    deleteReservation={this.deleteReservation}
+                                    reservations={this.state.reservations}
                                 />
                             )}
                         />
