@@ -7,6 +7,8 @@ import ReservationItem from "../reservationItem";
 
 import usersData from "../../data/user.json";
 
+import firestore from "../../firestore.js";
+
 const qs = require("query-string");
 
 class ReservationScreen extends Component {
@@ -14,31 +16,17 @@ class ReservationScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            reservations: []
+            reservations: [],
+            listings: []
         };
-    }
-
-    componentDidMount() {
-        const db = this.props.db;
-        const username = this.props.user;
-        let reservations = []
-        db.collection("reservations").get().then((querySnapshot)=> {
-            querySnapshot.forEach((doc)=> {
-                if (doc.data().buyerUsername === username){
-                    reservations.push({
-                        listingId: doc.id,
-                        ...doc.data()
-                    })
-                }
-            });
-            this.setState({reservations: reservations})
-        })
     }
 
 
     render() {
         const {flights, listings} = this.props;
-        const items = this.state.reservations.map(r => {
+        const username = this.props.user;
+        this.reservations = this.props.reservations.filter(r => r.buyerUsername === username);
+        const items = this.reservations.map(r => {
             const listing = listings.find(l => l.id === r.listingId);
             const flight = flights.find((f) => f.flightNumber === listing.flightInfo.flightNumber)
             const vendorUser = usersData.users.find(
@@ -50,6 +38,7 @@ class ReservationScreen extends Component {
                     listing={listing}
                     user={vendorUser}
                     flight={flight}
+                    deleteReservation = {this.props.deleteReservation}
                 />
             );
         });
@@ -60,7 +49,7 @@ class ReservationScreen extends Component {
                     Your Reservations:
                 </h2>
                 <div>{items}</div>
-                {this.state.reservations.length === 0 && <h2>No Reservations!</h2>}
+                {this.reservations.length === 0 && <h2>No Reservations!</h2>}
             </div>
         );
     }

@@ -7,7 +7,7 @@ import chatImage from "../../chat.svg";
 class ReservationItem extends Component {
 
     render() {
-        const {listing, user, reservation, flight} = this.props;
+        const {listing, user, reservation, flight, deleteReservation} = this.props;
         const flightInfo = listing.flightInfo;
         return (
             <div className="reservation">
@@ -48,6 +48,11 @@ class ReservationItem extends Component {
                         <img className="vendor-button-img" src={chatImage} alt="chat"/>
                         <div>Chat</div>
                         </button>
+                </div>
+                <div className="delete">
+                    <button className="delete-button" onClick= {() => deleteReservation(reservation)}>
+                        <div>Cancel Reservation</div>
+                    </button>
                 </div>
             </div>
         )
