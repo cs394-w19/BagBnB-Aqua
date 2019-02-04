@@ -1,27 +1,25 @@
 .search {
   display: flex;
   justify-content: space-between;
-  background-color: #ffffffcc;
+  background-color: #deb887;
   height: 150px;
-  box-shadow: 0 2px 5px -2px #000;
+  box-shadow: inset 0 2px 5px -2px #000, 0px 2px 5px -2px #000;
 
   &-flight {
-    box-shadow: inset 0px 2px 5px -2px #000;
     width: 60%;
-
+    box-shadow: inset 0px 2px 5px -2px #000;
     &-tab {
       display: flex;
       margin-bottom: 10px;
 
       &-button {
         width: 50%;
-        background-color: #ffffffcc;
         text-align: center;
         padding: 10px;
-
+        background-color: lightgrey;
+        box-shadow: inset 0px 2px 5px -2px #000;
         &-active {
-          background-color: #deb887;
-          box-shadow: inset 0 -10px 10px -10px #000000;
+          background-color: transparent;
         }
       }
     }
@@ -32,7 +30,7 @@
       border-radius: 5px;
       padding: .5em;
       margin: 10px;
-      background-color: #ffffffe6;
+      background-color: #ffffff88;
       width: 80%;
       height: 30px;
     }
@@ -51,7 +49,7 @@
       border-radius: 5px;
       padding: .5em;
       margin: 10px;
-      background-color: #ffffffe6;
+      background-color: #ffffff88;
       width: 80%;
       height: 30px;
     }

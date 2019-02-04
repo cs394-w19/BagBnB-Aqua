@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { withRouter } from "react-router-dom"
+import {withRouter} from "react-router-dom"
 import "./style.scss";
 
 //const classname = require('classnames');
@@ -35,7 +35,7 @@ class SellInfo extends Component {
     }
 
     onCreateClick = () => {
-        if (this.price && this.weight && this.flightNumber && this.date){
+        if (this.price && this.weight && this.flightNumber && this.date) {
             const db = this.props.db;
             let listing = {
                 "price": this.price,
@@ -64,30 +64,36 @@ class SellInfo extends Component {
                     .catch(error => {
                         console.error("Error writing document: ", error)
                     })
+                this.props.onCreateClick(
+                    {
+                        ...listing,
+                        id: number
+                    }
+                )
             })
             this.props.history.push("/yourlistings")
         } else {
             let alertMsg = "Please fill in the following: "
-            if (!this.price){
+            if (!this.price) {
                 alertMsg = alertMsg + " -Price ";
             }
-            if (!this.weight){
+            if (!this.weight) {
                 alertMsg = alertMsg + " -Weight";
             }
-            if (!this.flightNumber || this.flightNumber === "Select Flight"){
+            if (!this.flightNumber || this.flightNumber === "Select Flight") {
                 alertMsg = alertMsg + " -Flight Number";
             }
-            if (!this.date){
+            if (!this.date) {
                 alertMsg = alertMsg + " -Date";
             }
             alert(alertMsg);
         }
     }
-    
+
 
     render() {
         const flights = this.props.flights
-        let flightOptions =  flights.map(f => (
+        let flightOptions = flights.map(f => (
             <option value={f.flightNumber}>{f.flightNumber}</option>
         ))
         flightOptions.unshift(<option value="Select Flight">Select Flight</option>)

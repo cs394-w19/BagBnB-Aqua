@@ -17,7 +17,10 @@ class BookedItem extends Component {
                         <div className="meeting-details-dt-time">{reservation.meetingTime}</div>
                         <div className="meeting-details-dt-date">{flightInfo.date}</div>
                     </div>
-                    <div className="meeting-details-terminal">T5</div>
+                    <div >
+                        <div className="meeting-details-airport">{flight.departureLoc}</div>
+                        <div className="meeting-details-terminal">T5</div>
+                    </div>
                 </div>
                 <div className="flight-listing-container">
                     <div className="flight-details">

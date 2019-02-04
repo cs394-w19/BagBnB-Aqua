@@ -118,6 +118,12 @@ class App extends Component {
         this.setState(state)
     }
 
+    onCreateClick = (listing) => {
+        let state = this.state
+        state.listings.push(listing)
+        this.setState(state)
+    }
+
     onConfirmClick = (listingId, meetingTime) => {
         let state = this.state
         let listing = state.listings.find(l => l.id === listingId)
@@ -192,6 +198,7 @@ class App extends Component {
                                     user={this.state.username}
                                     db={this.db}
                                     flights={this.state.flights}
+                                    onCreateClick={this.onCreateClick.bind(this)}
                                 />
                             )}
                         />
