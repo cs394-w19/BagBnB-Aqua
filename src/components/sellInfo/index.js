@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from "react-router-dom"
 import "./style.scss";
 
 //const classname = require('classnames');
@@ -15,7 +16,6 @@ class SellInfo extends Component {
         this.weight = 50;
         this.flightNumber = "Select Flight";
         this.date = "";
-        this.listedBy = "karenk";
     }
 
     handlePriceChange(e) {
@@ -44,13 +44,14 @@ class SellInfo extends Component {
                     "flightNumber": this.flightNumber,
                     "date": this.date
                 },
-                "listedBy": this.listedBy,
+                "listedBy": this.props.user,
                 "booked": false
             }
             db.collection("listings").get().then((querySnapshot) => {
                 const index = querySnapshot.size + 1;
                 let number = index.toString();
                 let numZeroes = 5 - number.length;
+                // eslint-disable-next-line
                 for (var i of  Array(numZeroes).keys()) {
                     number = "0" + number;
                 }
@@ -64,6 +65,7 @@ class SellInfo extends Component {
                         console.error("Error writing document: ", error)
                     })
             })
+            this.props.history.push("/yourlistings")
         } else {
             let alertMsg = "Please fill in the following: "
             if (!this.price){
@@ -136,4 +138,4 @@ class SellInfo extends Component {
     }
 }
 
-export default SellInfo;
+export default withRouter(SellInfo);

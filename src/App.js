@@ -21,7 +21,8 @@ class App extends Component {
             listings: [],
             flights: [],
             username: "",
-            reservations: []
+            reservations: [],
+            users: []
         }
         this.db = firebase.firestore()
         this.fb = firebase
@@ -39,6 +40,7 @@ class App extends Component {
             let listings = [];
             let flights = [];
             let reservations = [];
+            let users = [];
             querySnapshot.forEach((doc) => {
                 listings.push({
                     id: doc.id,
@@ -59,56 +61,22 @@ class App extends Component {
                             ...doc.data()
                         })
                     })
+                    this.db.collection("users").get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            users.push({
+                                username: doc.id,
+                                ...doc.data()
+                            })
+                        })
+                        this.setState({
+                            listings: listings,
+                            flights: flights,
+                            reservations: reservations,
+                            users: users
+                        })
 
-                    this.setState({
-                        listings: listings,
-                        flights: flights,
-                        reservations: reservations
                     })
                 })
-                this.db
-                    .collection("flights")
-                    .get()
-                    .then(querySnapshot => {
-                        querySnapshot.forEach(doc => {
-                            flights.push(doc.data())
-                        })
-                        flights.sort(function (a, b) {
-                            return a.flightNumber - b.flightNumber
-                        })
-                        this.db
-                            .collection("reservations")
-                            .get()
-                            .then(querySnapshot => {
-                                querySnapshot.forEach(doc => {
-                                    reservations.push({
-                                        listingId: doc.id,
-                                        ...doc.data()
-                                    })
-                                })
-
-                                this.setState({
-                                    listings: listings,
-                                    flights: flights,
-                                    reservations: reservations
-                                })
-                            })
-                        this.db
-                            .collection("flights")
-                            .get()
-                            .then(querySnapshot => {
-                                querySnapshot.forEach(doc => {
-                                    flights.push(doc.data())
-                                })
-                                flights.sort(function(a, b) {
-                                    return a.flightNumber - b.flightNumber
-                                })
-                                this.setState({
-                                    listings: listings,
-                                    flights: flights
-                                })
-                            })
-                    })
             })
         })
     }
@@ -120,10 +88,10 @@ class App extends Component {
             .collection("reservations")
             .doc(reservation.listingId)
             .delete()
-            .then(function() {
+            .then(function () {
                 console.log("Document successfully deleted!")
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.error("Error removing document: ", error)
             })
 
@@ -131,7 +99,13 @@ class App extends Component {
         this.db
             .collection("listings")
             .doc(reservation.listingId)
-            .set(listing)
+            .set({
+                booked: listing.booked,
+                flightInfo: listing.flightInfo,
+                listedBy: listing.listedBy,
+                price: listing.price,
+                weight: listing.weight
+            })
             .then(res => {
                 console.log("Document successfully written!")
             })
@@ -144,7 +118,7 @@ class App extends Component {
         this.setState(state)
     }
 
-    onConfirmClick = (listingId, username, meetingTime) => {
+    onConfirmClick = (listingId, meetingTime) => {
         let state = this.state
         let listing = state.listings.find(l => l.id === listingId)
         listing.booked = true
@@ -152,7 +126,7 @@ class App extends Component {
             buyerUsername: this.state.username,
             meetingTime: meetingTime
         }
-        state.reservations.push({ ...reservation, listingId: listingId })
+        state.reservations.push({...reservation, listingId: listingId})
         this.db
             .collection("reservations")
             .doc(listingId)
@@ -187,7 +161,7 @@ class App extends Component {
                             exact
                             path="/"
                             render={() => {
-                                if (this.state.username != "") {
+                                if (this.state.username !== "") {
                                     return <Homepage/>
                                 } else {
                                     return (
@@ -241,6 +215,7 @@ class App extends Component {
                                     flights={this.state.flights}
                                     deleteReservation={this.deleteReservation}
                                     reservations={this.state.reservations}
+                                    users={this.state.users}
                                 />
                             )}
                         />
@@ -252,6 +227,7 @@ class App extends Component {
                                     listings={this.state.listings}
                                     flights={this.state.flights}
                                     reservations={this.state.reservations}
+                                    users={this.state.users}
                                 />
                             )}
                         />

@@ -5,17 +5,15 @@ import "./style.scss";
 
 import ReservationItem from "../reservationItem";
 
-import usersData from "../../data/user.json";
-
 class ReservationScreen extends Component {
     render() {
-        const {flights, listings} = this.props;
+        const {flights, listings, users} = this.props;
         const username = this.props.user;
         this.reservations = this.props.reservations.filter(r => r.buyerUsername === username);
         const items = this.reservations.map(r => {
             const listing = listings.find(l => l.id === r.listingId);
             const flight = flights.find((f) => f.flightNumber === listing.flightInfo.flightNumber)
-            const vendorUser = usersData.users.find(
+            const vendorUser = users.find(
                 u => u.username === listing.listedBy
             );
             return (

@@ -4,19 +4,18 @@ import BookedItem from "../bookedItem";
 
 import UnbookedItem from "../unbookedItem";
 // import "./style.scss";
-import usersData from "../../data/user.json";
 
 class SellerScreen extends Component {
 
     render() {
-        const {flights, listings, reservations} = this.props;
+        const {flights, listings, reservations, users} = this.props;
         const username = this.props.user;
         const bookedListings = listings.filter(l=> l.listedBy === username && l.booked===true);
         const unbookedListings = listings.filter(l=> l.listedBy === username && l.booked===false);
         const bookedItems = bookedListings.map(l=>{
             const flight = flights.find(f=>f.flightNumber === l.flightInfo.flightNumber)
             const reservation = reservations.find(r=>r.listingId === l.id)
-            const buyer = usersData.users.find(
+            const buyer = users.find(
                 u => u.username === reservation.buyerUsername
             );
             return (
