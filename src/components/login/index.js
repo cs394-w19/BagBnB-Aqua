@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
+import "./style.scss";
 class Login extends Component {
     state = {
         signUpEmail: "",
@@ -60,7 +61,7 @@ class Login extends Component {
         return (
             <div>
                 <div>
-                    <div>
+                    <div className="titleStyling">
                         <h1>Log In</h1>
                     </div>
                 </div>
@@ -72,9 +73,10 @@ class Login extends Component {
                     </div>
                 ) : null}
                 <div>
-                    <div>
+                    <div className="logInForm">
                         <form onSubmit={this.handleLogin}>
                             <input
+                                className="formItem"
                                 type="text"
                                 name="logInEmail"
                                 placeholder="Email"
@@ -82,18 +84,22 @@ class Login extends Component {
                                 onChange={this.handleInputChange}
                             />
                             <input
+                                className="formItem"
                                 type="password"
                                 name="logInPassword"
                                 placeholder="Password"
                                 value={logInPassword}
                                 onChange={this.handleInputChange}
                             />
-                            <button children="Log In" onClick={this.handleLogin}/>
+                            <button
+                                className="buttonStyling"
+                                children="Log In"
+                                onClick={this.handleLogin}/>
                         </form>
                     </div>
                 </div>
                 <div>
-                    <div>
+                    <div className="titleStyling">
                         <h1>Sign Up</h1>
                     </div>
                 </div>
@@ -105,9 +111,10 @@ class Login extends Component {
                     </div>
                 ) : null}
                 <div>
-                    <div>
+                    <div className="signInForm">
                         <form onSubmit={this.handleSignUp}>
                             <input
+                                className="formItem"
                                 type="text"
                                 name="signUpEmail"
                                 placeholder="Email"
@@ -115,6 +122,7 @@ class Login extends Component {
                                 onChange={this.handleInputChange}
                             />
                             <input
+                                className="formItem"
                                 type="password"
                                 name="signUpPassword"
                                 placeholder="Password"
@@ -122,6 +130,7 @@ class Login extends Component {
                                 onChange={this.handleInputChange}
                             />
                             <input
+                                className="formItem"
                                 type="text"
                                 name="firstName"
                                 placeholder="First Name"
@@ -129,6 +138,7 @@ class Login extends Component {
                                 onChange={this.handleInputChange}
                             />
                             <input
+                                className="formItem"
                                 type="text"
                                 name="lastName"
                                 placeholder="Last Name"
@@ -136,13 +146,15 @@ class Login extends Component {
                                 onChange={this.handleInputChange}
                             />
                             <input
+                                className="formItem"
                                 type="text"
                                 name="phoneNumber"
-                                placeholder="Phone NUmber"
+                                placeholder="Phone Number"
                                 value={phoneNumber}
                                 onChange={this.handleInputChange}
                             />
                             <button
+                                className="buttonStyling"
                                 children="Sign Up"
                                 onClick={this.handleSignUp}
                             />
