@@ -45,12 +45,14 @@ class ReservationItem extends Component {
                     <div className="vendor-details">
                         <div className="vendor-details-header">Provided By:</div>
                         <img className="vendor-details-img" src={userImage} alt={listing.listedBy}/>
-                        <div className="vendor-details-name">{user.firstName} {user.lastName}</div>
+                        <div className="vendor-details-name"> {user.firstName} {user.lastName} {user.isVerified && <div className="checkmark">&#x2705;</div>}</div>
                     </div>
-                    <button className="vendor-button">
-                        <img className="vendor-button-img" src={chatImage} alt="chat"/>
-                        <div>Chat</div>
-                        </button>
+                    <div className="vendor-phone">
+                        Phone Number:
+                        <div className="vendor-phone-number">
+                            {user.phoneNumber}
+                        </div>
+                    </div>
                 </div>
                 <div className="delete">
                     <button className="delete-button" onClick= {() => deleteReservation(reservation)}>

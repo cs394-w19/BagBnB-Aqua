@@ -12,25 +12,27 @@ class Homepage extends Component {
                         className="homepage-luggage-buttons"
                         onClick={() => this.props.history.push("/listings")}
                     >
-                        Buy Luggage Allowance
+                        Buy Space
                     </button>
                     <button className="homepage-luggage-buttons"
                         onClick={() => this.props.history.push("/new")}>
-                        Sell Luggage Allowance
+                        Sell Space
                     </button>
                 </div>
+                <div className="homepage-reservation">
                 <button
                     className="homepage-reservation-buttons"
                     onClick={() => this.props.history.push("/reservations")}
                 >
-                    Your Reservations
+                    My Scheduled Drops
                 </button>
                 <button
                     className="homepage-reservation-buttons"
                     onClick={() => this.props.history.push("/yourlistings")}
                 >
-                    Your Listings
+                    My Scheduled Pick-Ups
                 </button>
+                </div>
             </div>
         )
     }

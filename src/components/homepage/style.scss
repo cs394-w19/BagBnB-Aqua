@@ -1,11 +1,11 @@
 .homepage {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: inherit;
   position: inherit;
-
+  height: 500px;
 
   &-luggage {
     display: flex;
@@ -23,7 +23,10 @@
     }
   }
 
-  &-reservation-buttons {
+  &-reservation {
+    display: flex;
+    flex-direction: column;
+    &-buttons {
       width: 90%;
       padding: 10px;
       font-family: "Futura";
@@ -32,5 +35,6 @@
       border: 0;
       border-radius: 10px;
       margin: 10px auto;
+    }
   }
 }
