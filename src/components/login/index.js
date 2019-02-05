@@ -2,52 +2,61 @@ import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 class Login extends Component {
     state = {
-        email: "",
-        password: "",
-        error: null
+        signUpEmail: "",
+        logInEmail: "",
+        signUpPassword: "",
+        logInPassword: "",
+        firstName:"",
+        lastName:"",
+        phoneNumber:"",
+        logInError: null,
+        signUpError: null
     }
     handleInputChange = event => {
         this.setState({ [event.target.name]: event.target.value })
     }
     handleLogin = event => {
         event.preventDefault()
-        const { email, password } = this.state
+        const { logInEmail, logInPassword } = this.state
         this.props.firebase
             .auth()
-            .signInWithEmailAndPassword(email, password)
+            .signInWithEmailAndPassword(logInEmail, logInPassword)
             .then(user => {
                 this.props.history.push("/")
+                this.props.userCredentials(logInEmail)
             })
             .catch(error => {
-                this.setState({ error: error })
+                this.setState({ logInError: error })
             })
-        this.props.userCredentials(email)
     }
 
     handleSignUp = event => {
         event.preventDefault()
-        const { email, password } = this.state
+        const { signUpEmail, signUpPassword, firstName, lastName, phoneNumber } = this.state
         this.props.firebase
             .auth()
-            .createUserWithEmailAndPassword(email, password)
+            .createUserWithEmailAndPassword(signUpEmail, signUpPassword)
             .then(user => {
                 this.props.firebase
                     .auth()
-                    .signInWithEmailAndPassword(email, password)
+                    .signInWithEmailAndPassword(signUpEmail, signUpPassword)
                     .then(user => {
                         this.props.history.push("/")
+                        this.props.userCredentials(signUpEmail)
                     })
                     .catch(error => {
                         this.setState({ error: error })
                     })
             })
             .catch(error => {
-                this.setState({ error: error })
+                this.setState({ signUpError: error })
             })
+        let user = { firsthName: firstName, lastName: lastName, phoneNumber: phoneNumber }
+        this.props.createNewUser(user, signUpEmail.split('@')[0]);
     }
 
     render() {
-        const { email, password, error } = this.state
+        const { signUpEmail, logInEmail, signUpPassword, logInPassword, firstName, lastName, phoneNumber, signUpError, logInError } = this.state
         return (
             <div>
                 <div>
@@ -55,10 +64,10 @@ class Login extends Component {
                         <h1>Log In</h1>
                     </div>
                 </div>
-                {error ? (
+                {logInError ? (
                     <div>
                         <div>
-                            <p>{error.message}</p>
+                            <p>{logInError.message}</p>
                         </div>
                     </div>
                 ) : null}
@@ -67,19 +76,72 @@ class Login extends Component {
                         <form onSubmit={this.handleLogin}>
                             <input
                                 type="text"
-                                name="email"
+                                name="logInEmail"
                                 placeholder="Email"
-                                value={email}
+                                value={logInEmail}
                                 onChange={this.handleInputChange}
                             />
                             <input
                                 type="password"
-                                name="password"
+                                name="logInPassword"
                                 placeholder="Password"
-                                value={password}
+                                value={logInPassword}
                                 onChange={this.handleInputChange}
                             />
-                            <button children="Log In" />
+                            <button children="Log In" onClick={this.handleLogin}/>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h1>Sign Up</h1>
+                    </div>
+                </div>
+                {signUpError ? (
+                    <div>
+                        <div>
+                            <p>{signUpError.message}</p>
+                        </div>
+                    </div>
+                ) : null}
+                <div>
+                    <div>
+                        <form onSubmit={this.handleSignUp}>
+                            <input
+                                type="text"
+                                name="signUpEmail"
+                                placeholder="Email"
+                                value={signUpEmail}
+                                onChange={this.handleInputChange}
+                            />
+                            <input
+                                type="password"
+                                name="signUpPassword"
+                                placeholder="Password"
+                                value={signUpPassword}
+                                onChange={this.handleInputChange}
+                            />
+                            <input
+                                type="text"
+                                name="firstName"
+                                placeholder="First Name"
+                                value={firstName}
+                                onChange={this.handleInputChange}
+                            />
+                            <input
+                                type="text"
+                                name="lastName"
+                                placeholder="Last Name"
+                                value={lastName}
+                                onChange={this.handleInputChange}
+                            />
+                            <input
+                                type="text"
+                                name="phoneNumber"
+                                placeholder="Phone NUmber"
+                                value={phoneNumber}
+                                onChange={this.handleInputChange}
+                            />
                             <button
                                 children="Sign Up"
                                 onClick={this.handleSignUp}

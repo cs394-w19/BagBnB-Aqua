@@ -107,5 +107,15 @@
             width: 50px;
         }
     }
+    &-phone{
+        float: right;
+        border-radius: 10px;
+        color: black;
+        font-size: medium;
+        width: 120px;
+        &-number{
+            margin-top:10px;
+        }
+    }
 }
 

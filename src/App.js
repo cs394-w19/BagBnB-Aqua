@@ -27,6 +27,7 @@ class App extends Component {
         this.db = firebase.firestore()
         this.fb = firebase
         this.deleteReservation = this.deleteReservation.bind(this)
+        this.createNewUser = this.createNewUser.bind(this)
     }
 
     userCredentials(email) {
@@ -81,6 +82,22 @@ class App extends Component {
         })
     }
 
+    createNewUser(user, username){
+        this.db
+            .collection("users")
+            .doc(username)
+            .set(user)
+            .then(res => {
+                console.log("Document successfully written!")
+                let state = this.state;
+                state.users.push({...user, username:username})
+                this.setState(state);
+            })
+            .catch(error => {
+                console.error("Error writing document: ", error)
+            })
+
+    }
     deleteReservation(reservation) {
         let state = this.state
         let listing = state.listings.find(l => l.id === reservation.listingId)
@@ -176,6 +193,7 @@ class App extends Component {
                                             userCredentials={this.userCredentials.bind(
                                                 this
                                             )}
+                                            createNewUser = {this.createNewUser}
                                         />
                                     )
                                 }

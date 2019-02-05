@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import "./style.scss"
 
 import userImage from "../../userpicture.svg";
-import chatImage from "../../chat.svg";
 
 class BookedItem extends Component {
 
@@ -47,10 +46,12 @@ class BookedItem extends Component {
                         <img className="vendor-details-img" src={userImage} alt={listing.listedBy}/>
                         <div className="vendor-details-name">{user.firstName} {user.lastName}</div>
                     </div>
-                    <button className="vendor-button">
-                        <img className="vendor-button-img" src={chatImage} alt="chat"/>
-                        <div>Chat</div>
-                        </button>
+                    <div className="vendor-phone">
+                        Phone Number:
+                        <div className="vendor-phone-number">
+                            {user.phoneNumber}
+                        </div>
+                    </div>
                 </div>
             </div>
         )

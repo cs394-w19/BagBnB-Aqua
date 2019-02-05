@@ -95,16 +95,14 @@
             font-size: large
         }
     }
-    &-button{
+    &-phone{
         float: right;
-        background-color: black;
-        border: 0;
         border-radius: 10px;
-        color: white;
-        font-size: small;
-        width: 100px;
-        &-img{
-            width: 50px;
+        color: black;
+        font-size: medium;
+        width: 120px;
+        &-number{
+            margin-top:10px;
         }
     }
 }
@@ -122,4 +120,8 @@
         font-size: small;
         width: 120px;
     }
+}
+.checkmark{
+    margin-left: 6px;
+    float:right;
 }
