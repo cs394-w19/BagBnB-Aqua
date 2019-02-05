@@ -45,7 +45,10 @@ class ReservationItem extends Component {
                     <div className="vendor-details">
                         <div className="vendor-details-header">Provided By:</div>
                         <img className="vendor-details-img" src={userImage} alt={listing.listedBy}/>
-                        <div className="vendor-details-name"> {user.firstName} {user.lastName} {user.isVerified && <div className="checkmark">&#x2705;</div>}</div>
+                        <div className="vendor-details-name">
+                            {user.firstName} {user.lastName}
+                            {user.isVerified && <span className="checkmark">&#x2705;</span>}
+                        </div>
                     </div>
                     <div className="vendor-phone">
                         Phone Number:

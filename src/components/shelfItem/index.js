@@ -35,7 +35,7 @@ class ShelfItem extends Component {
                             <div className="shelf-item-info-baggage-user-header">Listed by: </div>
                             <div className="shelf-item-info-baggage-user-username">{listing.listedBy}</div>
                             </div>
-                            <img className="shelf-item-info-baggage-user-img" src={userImg}/>
+                            <img className="shelf-item-info-baggage-user-img" src={userImg} alt="user image"/>
                         </div>
                     </div>
                 </div>
