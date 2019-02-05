@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import "./style.scss"
 
 import userImage from "../../userpicture.svg";
-import chatImage from "../../chat.svg";
 
 class ReservationItem extends Component {
 
