@@ -7,32 +7,32 @@ class Homepage extends Component {
     render() {
         return (
             <div className="homepage">
-                <div className="homepage-luggage">
+                <div className="homepage-buy">
                     <button
-                        className="homepage-luggage-buttons"
+                        className="homepage-buy-buttons"
                         onClick={() => this.props.history.push("/listings")}
                     >
                         Buy Space
                     </button>
-                    <button className="homepage-luggage-buttons"
+                    <button
+                    className="homepage-buy-buttons"
+                    onClick={() => this.props.history.push("/reservations")}
+                >
+                    What I Bought
+                </button>
+            </div>
+                <div className="homepage-buy">
+                <button className="homepage-buy-buttons"
                         onClick={() => this.props.history.push("/new")}>
                         Sell Space
                     </button>
-                </div>
-                <div className="homepage-reservation">
                 <button
-                    className="homepage-reservation-buttons"
-                    onClick={() => this.props.history.push("/reservations")}
-                >
-                    My Scheduled Drops
-                </button>
-                <button
-                    className="homepage-reservation-buttons"
+                    className="homepage-buy-buttons"
                     onClick={() => this.props.history.push("/yourlistings")}
                 >
-                    My Scheduled Pick-Ups
+                    What I'm Selling
                 </button>
-                </div>
+            </div>
             </div>
         )
     }

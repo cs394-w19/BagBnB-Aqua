@@ -3,10 +3,26 @@ import {withRouter} from "react-router-dom";
 import BookedItem from "../bookedItem";
 
 import UnbookedItem from "../unbookedItem";
-// import "./style.scss";
+import "./style.scss";
+const classname = require('classnames');
 
 class SellerScreen extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            showBooked: true
+        }
+    }
+    onBookClick() {
+        this.setState({
+            showBooked: true
+        })
+    }
+    onUnbookClick() {
+        this.setState({
+            showBooked: false
+        })
+    }
     render() {
         const {flights, listings, reservations, users} = this.props;
         const username = this.props.user;
@@ -36,17 +52,25 @@ class SellerScreen extends Component {
                 />
             )
         })
-
+         const bookedClassName = classname(
+            "SellerScreen-tab-button",
+            {"SellerScreen-tab-button-active": this.state.showBooked})
+         const unBookedClassName = classname(
+            "SellerScreen-tab-button",
+            {"SellerScreen-tab-button-active": !this.state.showBooked})
         return (
-            <div className="lazy-reservation-styling">
-                <h2>
-                    Your Booked Listings:
-                </h2>
-                <div>{bookedItems}</div>
-                <h2>
-                    Your Unbooked Listings:
-                </h2>
-                <div>{unbookedItems}</div>
+            <div className="SellerScreen">
+            <div className = "SellerScreen-tab">
+                <button onClick={this.onBookClick.bind(this)} className = {bookedClassName}>
+                    Booked Listings
+                </button>
+                <button onClick={this.onUnbookClick.bind(this)} className = {unBookedClassName}>
+                    Unbooked Listings
+                </button>
+            </div>
+            {
+                this.state.showBooked ? <div>{bookedItems}</div> : <div>{unbookedItems}</div>
+            }
             </div>
         );
     }

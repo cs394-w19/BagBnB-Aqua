@@ -35,7 +35,7 @@ class SellInfo extends Component {
     }
 
     onCreateClick = () => {
-        if (this.price && this.weight && this.flightNumber && this.date) {
+        if (this.price && this.weight && this.flightNumber && this.date && this.flightNumber !== "Select Flight") {
             const db = this.props.db;
             let listing = {
                 "price": this.price,
