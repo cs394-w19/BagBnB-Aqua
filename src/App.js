@@ -31,9 +31,11 @@ class App extends Component {
     }
 
     userCredentials(email) {
+        let username = email.split("@")[0];
         this.setState({
-            username: email.split("@")[0]
+            username: username
         })
+        sessionStorage.setItem('username', username);
     }
 
     componentDidMount() {
@@ -69,6 +71,9 @@ class App extends Component {
                                 ...doc.data()
                             })
                         })
+                        if(sessionStorage.getItem("username")) {
+                            this.setState({'username': sessionStorage.getItem("username")});
+                        }
                         this.setState({
                             listings: listings,
                             flights: flights,
@@ -92,6 +97,7 @@ class App extends Component {
                 let state = this.state;
                 state.users.push({...user, username:username})
                 this.setState(state);
+                sessionStorage.setItem("username", username);
             })
             .catch(error => {
                 console.error("Error writing document: ", error)
@@ -262,5 +268,6 @@ class App extends Component {
         )
     }
 }
+
 
 export default App
