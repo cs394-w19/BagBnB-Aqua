@@ -29,47 +29,49 @@ class SearchInfo extends Component {
     }
 
     render() {
-        const { searchUsingFlightNumber, searchParams, onFlightClick, onLocationClick }= this.props;
+        const {searchUsingFlightNumber, searchParams, onFlightClick, onLocationClick} = this.props;
         const flightNumberClassName = classname(
-            "search-flight-tab-button",
-            {"search-flight-tab-button-active": searchUsingFlightNumber})
+            "tab-button",
+            {"tab-button-active": searchUsingFlightNumber})
         const locationClassName = classname(
-            "search-flight-tab-button",
-            {"search-flight-tab-button-active": !searchUsingFlightNumber})
+            "tab-button",
+            {"tab-button-active": !searchUsingFlightNumber})
         return (
             <div>
-                <div className="search">
-                    <div className="search-flight">
-                        <div className="search-flight-tab">
-                            <div className={flightNumberClassName}
-                                 onClick={onFlightClick}>Flight No.
-                            </div>
-                            <div className={locationClassName}
-                                 onClick={onLocationClick}>Location
-                            </div>
+                <div>
+                    <div className="tab">
+                        <div className={flightNumberClassName}
+                             onClick={onFlightClick}>Flight No.
                         </div>
-                        {!searchUsingFlightNumber && <div>
-                            <input placeholder="Departure (i.e., ORD)"
-                                   className="search-flight-input flight-search-input"
-                                   type="text" value={searchParams.from} onChange={this.handleFromChange}/>
-                            <input placeholder="Arrival (i.e., LGA)"
-                                   className="search-flight-input flight-search-input"
-                                   type="text" value={searchParams.to} onChange={this.handleToChange}/>
+                        <div className={locationClassName}
+                             onClick={onLocationClick}>Location
                         </div>
-                        }
-                        {searchUsingFlightNumber && <input placeholder="Flight Number (i.e VA314)"
-                                                                      className="search-flight-input"
-                                                                      type="text"
-                                                                      value={searchParams.flightNumber}
-                                                                      onChange={this.handleFlightNumberChange}/>}
                     </div>
-                    <div className="search-date">
-                        <div>Date:</div>
-                        <input className="search-date-input" type="date"
-                               value={searchParams.date} onChange={this.handleDateChange}/>
+                    <div  className="search">
+                        <div className="search-flight">
+                            {!searchUsingFlightNumber && <div>
+                                <input placeholder="Departure (i.e., ORD)"
+                                       className="search-flight-input flight-search-input"
+                                       type="text" value={searchParams.from} onChange={this.handleFromChange}/>
+                                <input placeholder="Arrival (i.e., LGA)"
+                                       className="search-flight-input flight-search-input"
+                                       type="text" value={searchParams.to} onChange={this.handleToChange}/>
+                            </div>
+                            }
+                            {searchUsingFlightNumber && <input placeholder="Flight Number (i.e VA314)"
+                                                               className="search-flight-input"
+                                                               type="text"
+                                                               value={searchParams.flightNumber}
+                                                               onChange={this.handleFlightNumberChange}/>}
+                        </div>
+                        <div className="search-date">
+                            <div>Date:</div>
+                            <input className="search-date-input" type="date"
+                                   value={searchParams.date} onChange={this.handleDateChange}/>
+                        </div>
                     </div>
+                    <div className="results-header">Results for {searchParams.date}:</div>
                 </div>
-                <div className="results-header">Results for {searchParams.date}:</div>
             </div>
         )
     }
