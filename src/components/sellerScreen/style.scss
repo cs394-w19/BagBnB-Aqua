@@ -2,16 +2,14 @@
 
 	&-tab {
 		display: flex;
-		justify-content: space-evenly;
-		margin: 10px 0;
 		&-button {
-			width: 40%;
-			height: 100px;
-			// margin: 20px;
-			background-color: lightgrey;
-			border-radius: 25px;
+			width: 50%;
+			text-align: center;
+			padding: 10px;
+			border: 0;
 			&-active {
-
+				background-color: #deb887;
+				font-weight: bold;
 			}
 		}
 	}

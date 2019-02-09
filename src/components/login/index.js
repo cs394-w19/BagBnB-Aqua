@@ -52,7 +52,7 @@ class Login extends Component {
             .catch(error => {
                 this.setState({ signUpError: error })
             })
-        let user = { firsthName: firstName, lastName: lastName, phoneNumber: phoneNumber }
+        let user = { firstName: firstName, lastName: lastName, phoneNumber: phoneNumber }
         this.props.createNewUser(user, signUpEmail.split('@')[0]);
     }
 
