@@ -10,7 +10,7 @@ class Homepage extends Component {
         return (
             <div className="homepage">
                 <div className="homepage-buy">
-                    <img className="homepage-buy-img" src={buyImg}/>
+                    <img className="homepage-buy-img" src={buyImg} alt="buy"/>
                     <button
                         className="homepage-buy-buttons"
                         onClick={() => this.props.history.push("/listings")}
@@ -25,7 +25,7 @@ class Homepage extends Component {
                     </button>
                 </div>
                 <div className="homepage-sell">
-                    <img className="homepage-sell-img" src={sellImg}/>
+                    <img className="homepage-sell-img" src={sellImg} alt="sell"/>
                     <button className="homepage-sell-buttons"
                             onClick={() => this.props.history.push("/new")}>
                         Sell Space
