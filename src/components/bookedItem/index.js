@@ -47,7 +47,7 @@ class BookedItem extends Component {
                         <div className="vendor-details-name">{user.firstName} {user.lastName}</div>
                     </div>
                     <div className="vendor-phone">
-                        Phone Number:
+                        <div>Phone Number:</div>
                         <a className="vendor-phone-number" href={"tel:"+user.phoneNumber}>
                             {user.phoneNumber}
                         </a>
