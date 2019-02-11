@@ -122,7 +122,7 @@ class SellInfo extends Component {
                             onChange={this.handleDateChange}/>
                     </div>
                     <div className="listing-form-field">
-                        <div className="listing-form-field-label">Price:</div>
+                        <div className="listing-form-field-label">Price (USD):</div>
                         <input
                             placeholder="price"
                             className="listing-form-field-input"
@@ -131,7 +131,7 @@ class SellInfo extends Component {
                             onChange={this.handlePriceChange}/>
                     </div>
                     <div className="listing-form-field">
-                        <div className="listing-form-field-label">Weight:</div>
+                        <div className="listing-form-field-label">Weight (lbs):</div>
                         <input
                             placeholder="weight"
                             className="listing-form-field-input"

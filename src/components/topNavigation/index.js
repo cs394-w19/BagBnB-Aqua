@@ -17,7 +17,13 @@ class TopNavigation extends Component {
 				</div>
 			);
 		}
-
+		if(this.props.history.location.pathname === '/'){
+			return(
+				<div className="header">
+					<img className="logo" src={logo} alt="Bagdrop" onClick={() => this.props.history.push('/')} />
+				</div>
+			)
+		}
 		return (
 			<div className="header">
 				<button className="TopNavigationButton" onClick={() => this.props.history.goBack()}><img className="TopNavigationButton-image" src={back} alt="back"/></button>
