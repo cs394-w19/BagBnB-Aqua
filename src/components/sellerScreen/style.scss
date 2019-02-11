@@ -1,14 +1,20 @@
 .SellerScreen {
 
+
 	&-tab {
 		display: flex;
+		background-color: lightgrey;
 		&-button {
+			margin-top: 5px;
 			width: 50%;
 			text-align: center;
 			padding: 10px;
-			border: 0;
+			border:0;
+			background-color: lightgrey;
 			&-active {
-				background-color: #deb887;
+				background-color: #03a4a8;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
 				font-weight: bold;
 			}
 		}

@@ -35,7 +35,7 @@ class SellInfo extends Component {
     }
 
     onCreateClick = () => {
-        if (this.price && this.weight && this.flightNumber && this.date && this.flightNumber !== "Select Flight") {
+        if (this.props.user && this.price && this.weight && this.flightNumber && this.date && this.flightNumber !== "Select Flight") {
             const db = this.props.db;
             let listing = {
                 "price": this.price,
@@ -86,6 +86,9 @@ class SellInfo extends Component {
             if (!this.date) {
                 alertMsg = alertMsg + " -Date";
             }
+            if (!this.props.user){
+                alertMsg = "Please Login First!"
+            }
             alert(alertMsg);
         }
     }
@@ -99,7 +102,7 @@ class SellInfo extends Component {
         flightOptions.unshift(<option value="Select Flight">Select Flight</option>)
         return (
             <div>
-                <form className="listing-form" onSubmit={this.onCreateClick}>
+                <div className="listing-form">
                     <div className="listing-form-header">Flight and Baggage Allowance Details</div>
                     <div className="listing-form-field">
                         <div className="listing-form-field-label">Flight Number:</div>
@@ -137,7 +140,7 @@ class SellInfo extends Component {
                             onChange={this.handleWeightChange}/>
                     </div>
                     <button onClick={this.onCreateClick} className="listing-form-button">Create Listing</button>
-                </form>
+                </div>
 
             </div>
         )

@@ -10,7 +10,7 @@ class SellerScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showBooked: true
+            showBooked: false
         }
     }
     onBookClick() {
@@ -61,12 +61,12 @@ class SellerScreen extends Component {
         return (
             <div className="SellerScreen">
             <div className = "SellerScreen-tab">
-                <button onClick={this.onBookClick.bind(this)} className = {bookedClassName}>
+                <div onClick={this.onBookClick.bind(this)} className = {bookedClassName}>
                     Booked Listings
-                </button>
-                <button onClick={this.onUnbookClick.bind(this)} className = {unBookedClassName}>
+                </div>
+                <div onClick={this.onUnbookClick.bind(this)} className = {unBookedClassName}>
                     Unbooked Listings
-                </button>
+                </div>
             </div>
             {
                 this.state.showBooked ? <div>{bookedItems}</div> : <div>{unbookedItems}</div>

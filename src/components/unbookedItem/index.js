@@ -23,6 +23,7 @@ class UnbookedItem extends Component {
                         </div>
                     </div>
                     <div className="listing-details">
+                        <div className="listing-details-date">{listing.flightInfo.date}</div>
                         <div className="listing-details-price">${listing.price}</div>
                         <div className="listing-details-weight">{listing.weight} lbs</div>
                     </div>

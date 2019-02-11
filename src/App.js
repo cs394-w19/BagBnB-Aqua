@@ -169,7 +169,13 @@ class App extends Component {
         this.db
             .collection("listings")
             .doc(listingId)
-            .set(listing)
+            .set({
+                booked: listing.booked,
+                flightInfo: listing.flightInfo,
+                listedBy: listing.listedBy,
+                price: listing.price,
+                weight: listing.weight
+            })
             .then(res => {
                 console.log("Document successfully written!")
             })

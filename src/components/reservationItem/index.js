@@ -51,9 +51,9 @@ class ReservationItem extends Component {
                     </div>
                     <div className="vendor-phone">
                         Phone Number:
-                        <div className="vendor-phone-number">
+                        <a className="vendor-phone-number" href={"tel:"+user.phoneNumber}>
                             {user.phoneNumber}
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div className="delete">
